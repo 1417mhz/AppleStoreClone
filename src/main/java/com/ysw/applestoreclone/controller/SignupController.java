@@ -31,6 +31,9 @@ public class SignupController extends HttpServlet {
             userBean.setUserName(req.getParameter("userName"));
             userBean.setUserDob(req.getParameter("userDob"));
             userBean.setUserContact(req.getParameter("userContact"));
+            if(req.getParameter("socialId") != null) {
+                userBean.setSocialId(req.getParameter("socialId"));
+            }
 
             signupService.signupUser(userBean);
         } else throw new RuntimeException("No parameter found");

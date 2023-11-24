@@ -12,7 +12,7 @@ public class SignupService {
     public void signupUser(UserBean userBean) {
         try (Connection conn = DBConn.getDBConn()) { // Connection 객체 생성 (DB 연결)
             if(!isUserDuplicate(conn, userBean.getUserId())) { // 같은 userId를 사용하는 중복된 사용자가 있는지 확인
-                String query = "INSERT INTO user(user_id, user_pw, user_email, user_name, user_dob, user_contact) VALUES(?, ?, ?, ?, ?, ?);";
+                String query = "INSERT INTO user(user_id, user_pw, user_email, user_name, user_dob, user_contact, social_id) VALUES(?, ?, ?, ?, ?, ?, ?);";
                 try (PreparedStatement pstmt = conn.prepareStatement(query);) {
                     pstmt.setString(1, userBean.getUserId());
                     pstmt.setString(2, userBean.getUserPw());
@@ -20,6 +20,7 @@ public class SignupService {
                     pstmt.setString(4, userBean.getUserName());
                     pstmt.setString(5, userBean.getUserDob());
                     pstmt.setString(6, userBean.getUserContact());
+                    pstmt.setString(7, userBean.getSocialId());
                     pstmt.executeUpdate();
 
                     System.out.println("** 회원가입 성공 **");

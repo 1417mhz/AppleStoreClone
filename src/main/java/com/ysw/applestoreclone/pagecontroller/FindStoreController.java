@@ -1,4 +1,4 @@
-package com.ysw.applestoreclone.controller;
+package com.ysw.applestoreclone.pagecontroller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

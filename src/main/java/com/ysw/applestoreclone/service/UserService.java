@@ -8,12 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserService {
-    // 해당 이메일을 가진 사용자가 있는지 확인. (소셜 로그인 검증을 위함)
-    public String findUserByEmail(String userEmail) {
+    // 해당 소셜 로그인 ID를 가진 사용자가 있는지 확인. (소셜 로그인 검증을 위함)
+    public String findUserBySocialId(String socialId) {
         try (Connection conn = DBConn.getDBConn()) {
-            String query = "SELECT user_id FROM user WHERE user_email = ?";
+            String query = "SELECT user_id FROM user WHERE social_id = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-                pstmt.setString(1, userEmail);
+                pstmt.setString(1, socialId);
                 ResultSet rs = pstmt.executeQuery();
                 // ResultSet에 데이터가 담겨있는지 확인하고 리턴을 수행한다
                 if (rs.next()) {

@@ -1,5 +1,8 @@
 package com.ysw.applestoreclone.controller;
 
+import com.ysw.applestoreclone.service.LoginKakaoService;
+import com.ysw.applestoreclone.service.UserService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,20 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.HashMap;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider;
-import com.ysw.applestoreclone.service.LoginKakaoService;
-import com.ysw.applestoreclone.service.UserService;
-
-@WebServlet("/user/kakao-login")
+@WebServlet("/user/kakao-login-proc")
 public class LoginKakaoController extends HttpServlet {
     UserService userService = new UserService();
     LoginKakaoService loginKakaoService = new LoginKakaoService();
@@ -42,8 +35,8 @@ public class LoginKakaoController extends HttpServlet {
             HashMap<String, Object> userInfo = loginKakaoService.getUserInfo(accessToken); // 토큰으로 유저 정보 받아오기
 
             // 이미 회원가입이 된 소셜 로그인 유저인지, 아닌지를 검증
-            String userId = userService.findUserByEmail((String)userInfo.get("email"));
-            if(userService.findUserByEmail((String)userInfo.get("email")) != null) {
+            String userId = userService.findUserBySocialId((String)userInfo.get("socialId"));
+            if(userId != null) {
                 session.setAttribute("isLogin", "true");
                 session.setAttribute("userId", userId);
                 session.setAttribute("kakaoLogin", "true");

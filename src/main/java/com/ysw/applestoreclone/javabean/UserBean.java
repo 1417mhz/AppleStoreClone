@@ -20,6 +20,7 @@ public class UserBean {
     private String userState;
     private String signupDate;
     private String leaveDate;
+    private String socialId;
 
     /*
     public String getUserId() {

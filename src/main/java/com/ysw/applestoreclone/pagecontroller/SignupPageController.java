@@ -1,4 +1,4 @@
-package com.ysw.applestoreclone.controller;
+package com.ysw.applestoreclone.pagecontroller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/user/login")
-public class LoginPageController extends HttpServlet {
+@WebServlet("/user/signup")
+public class SignupPageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         doPost(req, res);
@@ -17,8 +17,8 @@ public class LoginPageController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String viewPath = "/user/login.jsp";
-        RequestDispatcher dsp = req.getRequestDispatcher(viewPath);
-        dsp.forward(req, res);
+        String viewPath = "/user/signup.jsp";
+        RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
+        dispatcher.forward(req, res);
     }
 }
