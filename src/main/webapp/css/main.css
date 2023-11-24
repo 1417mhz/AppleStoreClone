@@ -1,0 +1,36 @@
+a:link, a:visited, a:hover, a:active {color:#333;}
+
+.container {
+	width: 100px;
+	margin:0 auto;
+	height: 85px;
+	display: flex;
+	align-items: center;
+    justify-content: center; /* 가로로 가운데 정렬하는 속성 */
+}
+section  nav ul {
+	display:flex;
+	text-align: center;
+}
+header nav ul {
+	display:flex;
+	text-align: center;
+}
+header nav ul li {
+	padding: 20px 10px;
+	width: 88px;  
+	list-style-type: none; /* 점을 없애는 속성 */
+}
+header nav ul li a {
+	font-weight: bold;
+	font-size:1.0625rem;
+	text-decoration: none; /* 밑줄을 없애는 속성 */
+}
+.t1{
+    font-size: 38px;
+    display: inline;
+}
+
+.main1 {
+	text-align: center; /* 가운데 정렬 */
+}

@@ -1,0 +1,71 @@
+package com.ysw.applestoreclone.controller;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider;
+import com.ysw.applestoreclone.service.LoginKakaoService;
+import com.ysw.applestoreclone.service.UserService;
+
+@WebServlet("/user/kakao-login")
+public class LoginKakaoController extends HttpServlet {
+    UserService userService = new UserService();
+    LoginKakaoService loginKakaoService = new LoginKakaoService();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        doPost(req, res);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession();
+
+        // 인가 코드가 return 되지 않고 에러가 발생한 경우를 확인
+        if(req.getParameter("error") == null) {
+            String authCode = req.getParameter("code"); // 인가 코드 가져오기
+            String accessToken = loginKakaoService.getAccessToken(authCode); // 인가 코드로 토큰 받아오기
+            HashMap<String, Object> userInfo = loginKakaoService.getUserInfo(accessToken); // 토큰으로 유저 정보 받아오기
+
+            // 이미 회원가입이 된 소셜 로그인 유저인지, 아닌지를 검증
+            String userId = userService.findUserByEmail((String)userInfo.get("email"));
+            if(userService.findUserByEmail((String)userInfo.get("email")) != null) {
+                session.setAttribute("isLogin", "true");
+                session.setAttribute("userId", userId);
+                session.setAttribute("kakaoLogin", "true");
+
+                String contextPath = req.getContextPath();
+                res.sendRedirect(contextPath + "/");
+            } else {
+                // 아직 회원가입이 안 된 유저라면 회원가입을 진행하도록 함
+                req.setAttribute("kakaoUser", userInfo);
+
+                String viewPath = "/user/signup.jsp";
+                RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
+                dispatcher.forward(req, res);
+            }
+        } else {
+            String error = req.getParameter("error");
+            String errorDesc = req.getParameter("error_description");
+            System.out.println("error = " + error);
+            System.out.println("errorDesc = " + errorDesc);
+
+            String contextPath = req.getContextPath();
+            res.sendRedirect(contextPath + "/user/login");
+        }
+    }
+}
