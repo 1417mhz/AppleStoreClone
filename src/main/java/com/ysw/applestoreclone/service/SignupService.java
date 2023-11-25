@@ -2,6 +2,7 @@ package com.ysw.applestoreclone.service;
 
 import com.ysw.applestoreclone.javabean.DBConn;
 import com.ysw.applestoreclone.javabean.UserBean;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,9 @@ public class SignupService {
     public void signupUser(UserBean userBean) {
         try (Connection conn = DBConn.getDBConn()) { // Connection 객체 생성 (DB 연결)
             if(!isUserDuplicate(conn, userBean.getUserId())) { // 같은 userId를 사용하는 중복된 사용자가 있는지 확인
+                // 비밀번호 암호화 후 저장
+                userBean.setUserPw(BCrypt.hashpw(userBean.getUserPw(), BCrypt.gensalt()));
+
                 String query = "INSERT INTO user(user_id, user_pw, user_email, user_name, user_dob, user_contact, social_id) VALUES(?, ?, ?, ?, ?, ?, ?);";
                 try (PreparedStatement pstmt = conn.prepareStatement(query);) {
                     pstmt.setString(1, userBean.getUserId());

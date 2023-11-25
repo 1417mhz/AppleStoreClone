@@ -1,6 +1,7 @@
 package com.ysw.applestoreclone.service;
 
 import com.ysw.applestoreclone.javabean.DBConn;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +13,11 @@ public class LoginService {
     // 로그인 로직
     public boolean loginUser(String userId, String userPw) {
         // DB에서 userId로 사용자를 검색하여 비밀번호를 가져옴
-        String originPw = getUserPwById(userId);
-        if(userPw.equals(originPw)) { // 암호 복호화 후 비교하는 작업 필요
+        String hashedPw = getUserPwById(userId);
+        if(BCrypt.checkpw(userPw, hashedPw)) { // 암호 복호화 후 비교 작업
             System.out.println("** " + userId + " 로그인 성공 **");
             return true;
-        } else if(originPw == null) {
+        } else if(hashedPw == null) {
             System.out.println("!! 해당되는 ID의 회원 없음 !!");
             return false;
         } else {
