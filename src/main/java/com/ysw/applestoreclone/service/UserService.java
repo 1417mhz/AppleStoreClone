@@ -96,4 +96,26 @@ public class UserService {
             return false; // 그 외 오류 발생시 false 반환
         }
     }
+
+    public void userPwUpdate(String userId, String currentPw, String newPw) {
+        if (BCrypt.checkpw(currentPw, getUserPwById(userId))) {
+            try (Connection conn = DBConn.getDBConn()) {
+                newPw = BCrypt.hashpw(newPw, BCrypt.gensalt());
+                String query = "UPDATE user SET user_pw = ? WHERE user_id = ?";
+                try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                    pstmt.setString(1, newPw);
+                    pstmt.setString(2, userId);
+                    pstmt.executeUpdate();
+
+                    System.out.println("** 비밀번호 변경 성공 **");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Fail to Connect DB", e);
+            }
+        } else {
+            System.out.println("!! 비밀번호 변경 싫패 !!");
+            throw new RuntimeException("Fail to Connect DB");
+        }
+    }
 }
