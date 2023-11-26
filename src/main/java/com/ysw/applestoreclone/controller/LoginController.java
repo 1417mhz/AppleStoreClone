@@ -1,6 +1,6 @@
 package com.ysw.applestoreclone.controller;
 
-import com.ysw.applestoreclone.service.LoginService;
+import com.ysw.applestoreclone.service.UserLoginService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/user/loginProc")
 public class LoginController extends HttpServlet {
-    LoginService loginService = new LoginService();
+    UserLoginService userLoginService = new UserLoginService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
 
         // 로그인 로직 수행
         // 로그인 작업이 성공적으로 수행되었다면 메인 페이지로, 아니라면 다시 로그인 페이지로 이동
-        if (loginService.loginUser(userId, userPw)) {
+        if (userLoginService.loginUser(userId, userPw)) {
             session.setAttribute("isLogin", "true");
             session.setAttribute("userId", userId);
 

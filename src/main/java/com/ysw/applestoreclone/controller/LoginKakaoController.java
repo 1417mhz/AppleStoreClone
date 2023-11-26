@@ -1,6 +1,6 @@
 package com.ysw.applestoreclone.controller;
 
-import com.ysw.applestoreclone.service.LoginKakaoService;
+import com.ysw.applestoreclone.service.UserLoginService;
 import com.ysw.applestoreclone.service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 @WebServlet("/user/kakao-login-proc")
 public class LoginKakaoController extends HttpServlet {
     UserService userService = new UserService();
-    LoginKakaoService loginKakaoService = new LoginKakaoService();
+    UserLoginService userLoginService = new UserLoginService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -31,8 +31,8 @@ public class LoginKakaoController extends HttpServlet {
         // 인가 코드가 return 되지 않고 에러가 발생한 경우를 확인
         if(req.getParameter("error") == null) {
             String authCode = req.getParameter("code"); // 인가 코드 가져오기
-            String accessToken = loginKakaoService.getAccessToken(authCode); // 인가 코드로 토큰 받아오기
-            HashMap<String, Object> userInfo = loginKakaoService.getUserInfo(accessToken); // 토큰으로 유저 정보 받아오기
+            String accessToken = userLoginService.getAccessToken(authCode); // 인가 코드로 토큰 받아오기
+            HashMap<String, Object> userInfo = userLoginService.getUserInfo(accessToken); // 토큰으로 유저 정보 받아오기
 
             // 이미 회원가입이 된 소셜 로그인 유저인지, 아닌지를 검증
             String userId = userService.findUserBySocialId((String)userInfo.get("socialId"));

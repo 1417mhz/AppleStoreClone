@@ -1,7 +1,7 @@
 package com.ysw.applestoreclone.controller;
 
 import com.ysw.applestoreclone.javabean.UserBean;
-import com.ysw.applestoreclone.service.SignupService;
+import com.ysw.applestoreclone.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/user/signupProc")
 public class SignupController extends HttpServlet {
-    SignupService signupService = new SignupService();
+    UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class SignupController extends HttpServlet {
                 userBean.setSocialId(req.getParameter("socialId"));
             }
 
-            signupService.signupUser(userBean);
+            userService.signupUser(userBean);
         } else throw new RuntimeException("No parameter found");
 
         String contextPath = req.getContextPath();
