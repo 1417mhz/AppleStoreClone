@@ -118,4 +118,19 @@ public class UserService {
             throw new RuntimeException("Fail to Connect DB");
         }
     }
+
+    public void userLeave(String userId) {
+        try (Connection conn = DBConn.getDBConn()) {
+            String query = "UPDATE user SET leave_date = CURRENT_TIMESTAMP WHERE user_id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, userId);
+                pstmt.executeUpdate();
+
+                System.out.println("** 회원 탈퇴 성공 **");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Fail to Connect DB", e);
+        }
+    }
 }
