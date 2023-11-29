@@ -3,7 +3,6 @@ package com.ysw.applestoreclone.service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.ysw.applestoreclone.javabean.DBConn;
 import com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -11,10 +10,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 
 public class UserLoginService {
@@ -22,15 +17,20 @@ public class UserLoginService {
 
     // 로그인 로직
     public boolean loginUser(String userId, String userPw) {
-        // DB에서 userId로 사용자를 검색하여 비밀번호를 가져옴
-        String hashedPw = userService.getUserPwById(userId);
         try {
-            if(BCrypt.checkpw(userPw, hashedPw)) { // 암호 복호화 후 비교 작업
-                System.out.println("** " + userId + " 로그인 성공 **");
-                return true;
-            } else {
-                System.out.println("!! 비밀번호 틀림 !!");
+            if (!userService.isUserActive(userId)) {
+                System.out.println("!! " + userId + " 탈퇴한 회원 !!");
                 return false;
+            } else {
+                // DB에서 userId로 사용자를 검색하여 비밀번호를 가져옴
+                String hashedPw = userService.getUserPwById(userId);
+                if (BCrypt.checkpw(userPw, hashedPw)) { // 암호 복호화 후 비교 작업
+                    System.out.println("** " + userId + " 로그인 성공 **");
+                    return true;
+                } else {
+                    System.out.println("!! 비밀번호 틀림 !!");
+                    return false;
+                }
             }
         } catch (NullPointerException e) {
             e.printStackTrace();

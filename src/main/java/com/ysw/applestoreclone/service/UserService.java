@@ -56,6 +56,66 @@ public class UserService {
         }
     }
 
+    // 사용자 전체 정보 추출 로직
+    public UserBean getUserInfoById(String userId) {
+        UserBean userBean = new UserBean();
+        try (Connection conn = DBConn.getDBConn()) {
+            String query = "SELECT * FROM user WHERE user_id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, userId);
+                ResultSet rs = pstmt.executeQuery();
+                // ResultSet에 데이터가 담겨있는지 확인하고 리턴을 수행한다
+                if (rs.next()) {
+                    userBean.setUserNo(rs.getString("user_no"));
+                    userBean.setUserId(rs.getString("user_id"));
+                    userBean.setUserPw(rs.getString("user_pw"));
+                    userBean.setSocialId(rs.getString("social_id"));
+                    userBean.setUserEmail(rs.getString("user_email"));
+                    userBean.setUserName(rs.getString("user_name"));
+                    userBean.setUserDob(rs.getString("user_dob"));
+                    userBean.setUserGender(rs.getString("user_gender"));
+                    userBean.setUserAddress(rs.getString("user_address"));
+                    userBean.setUserContact(rs.getString("user_contact"));
+                    userBean.setUserRole(rs.getString("user_role"));
+                    userBean.setUserBalance(Integer.parseInt(rs.getString("user_balance")));
+                    userBean.setUserState(rs.getString("user_state"));
+                    userBean.setSignupDate(rs.getString("signup_date"));
+                    userBean.setLeaveDate(rs.getString("leave_date"));
+                    rs.close();
+                    return userBean;
+                } else { // ResultSet에 데이터가 없을 경우 ResultSet을 닫고 null을 리턴한다
+                    rs.close(); // ResultSet을 닫음
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean isUserActive(String userId) {
+        try (Connection conn = DBConn.getDBConn()) {
+            String query = "SELECT user_state FROM user WHERE user_id = ?";
+            // try-with-resources 문법을 이용하면 db 리소스를 알아서 정리해준다
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, userId);
+                ResultSet rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    boolean userStatus = rs.getString("user_state").equals("active");
+                    rs.close();
+                    return userStatus;
+                } else {
+                    rs.close();
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // 그 외 오류 발생시 false 반환
+        }
+    }
+
     public void signupUser(UserBean userBean) {
         try (Connection conn = DBConn.getDBConn()) { // Connection 객체 생성 (DB 연결)
             if(!isUserDuplicate(conn, userBean.getUserId())) { // 같은 userId를 사용하는 중복된 사용자가 있는지 확인
@@ -121,7 +181,8 @@ public class UserService {
 
     public void userLeave(String userId) {
         try (Connection conn = DBConn.getDBConn()) {
-            String query = "UPDATE user SET leave_date = CURRENT_TIMESTAMP WHERE user_id = ?";
+            String query = "UPDATE user SET leave_date = CURRENT_TIMESTAMP, " +
+                            "user_state = 'inactive' WHERE user_id = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, userId);
                 pstmt.executeUpdate();
