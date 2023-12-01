@@ -1,0 +1,614 @@
+a:link, a:visited, a:hover, a:active {color:#333;}
+.container {
+	width: 100px;
+	margin:0 auto;
+	height: 85px;
+	display: flex;
+	align-items: center;
+    justify-content: center; /* 가로로 가운데 정렬하는 속성 */
+
+}
+header {
+	background-color: #f2f2f2; /* 연한 회색 배경색으로 설정 */
+	margin-bottom: 30px;
+}
+header nav ul {
+	display:flex;
+	text-align: center;
+}
+header nav ul li {
+	padding: 20px 10px;
+	width: 88px;  
+	list-style-type: none; /* 점을 없애는 속성 */
+}
+header nav ul li a {
+	font-weight: bold;
+	font-size:1.0625rem;
+	text-decoration: none; /* 밑줄을 없애는 속성 */
+}
+footer {
+    margin-top: 60px; /* 상단 여백의 크기를 조정하세요 */
+    border-top: 1px solid #ccc; /* 상단에 1픽셀 두께의 선 추가 */
+    background-color: #f5f5f5; /* 배경색 설정 */
+ 	padding: 20px; /* 내부 여백 설정 */
+	color: #333; /* 글자 색상 설정 */
+	display: flex;
+    flex-direction: column;
+}
+footer #footer_address {
+    width:990px;
+    margin:auto;
+}
+.subject{
+	 font-family: "Roboto", Arial, sans-serif;
+     font-weight: 700;
+     font-size: 16px;
+}
+.t1{
+    font-size: 38px;
+    display: inline;
+    padding-left: 100px; /* 왼쪽 여백 설정 */
+    margin-bottom: 30px;
+}
+.t2{
+    font-size: 18px;
+    display: inline;
+    padding-left: 250px; /* 왼쪽 여백 설정 */
+    font-weight: bold;  /* 진한 글씨*/
+    margin-bottom: 30px;
+}
+.t3{
+    font-size: 18px;
+    padding-left: 250px; /* 왼쪽 여백 설정 */
+    list-style-type: none; /* 점 제거 */
+  	font-weight: bold;  /* 진한 글씨*/
+  	margin-bottom: 5px; /* 하단 여백의 크기를 조정하세요 */
+    margin-top: 8px; /* 상단 여백의 크기를 조정하세요 */
+}
+.t4{
+    font-size: 15px;
+    padding-left: 250px; /* 왼쪽 여백 설정 */
+    list-style-type: none; /* 점 제거 */
+    
+
+}
+.t5{
+    font-size: 18px;
+    display: inline;
+    padding-left: 730px; /* 왼쪽 여백 설정 */
+    font-weight: bold;  /* 진한 글씨*/
+    margin-bottom: 20px; /* 하단 여백의 크기를 조정하세요 */
+    margin-top: 20px; /* 상단 여백의 크기를 조정하세요 */
+}
+
+
+.main1 {
+	text-align: center; /* 가운데 정렬 */
+}
+.main2 {
+  display: flex;
+}
+.main3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.main4 {
+  display: flex;
+}
+.main5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+
+section nav ul li {
+	padding: 20px 10px;
+	width: 88px;  
+	list-style-type: none; /* 점을 없애는 속성 */
+}
+.item1 li {
+  list-style-type: none; /* 점 제거 */
+  font-weight: bold;  /* 진한 글씨*/
+}
+.item1 img {
+  width: 100px; /* 이미지 가로 크기 설정 */
+  height: auto; /* 이미지 세로 크기 자동 조정 */
+} /*-------img1-----*/
+
+.main5 .item2 {
+  display: flex; /* 내부 요소를 가로로 배열하기 위해 flex 사용 */
+}
+
+.main5 .item2 .slideshow {
+  flex: 1; /* 내부 요소의 크기를 동일하게 설정 */
+  margin-right: 10px; /* 오른쪽 여백 설정 */
+}
+
+.main5 .item2 .slideshow:last-child {
+  margin-right: 0; /* 마지막 요소에는 오른쪽 여백 제거 */
+}
+
+.main5 .item2 .slideshow ul {
+  
+  list-style: none; /* 리스트 스타일 제거 */
+  padding: 0;
+  margin: 0;
+}
+.main5 .item2 .slideshow li {
+  flex: 1; /* 내부 요소의 크기를 동일하게 설정 */
+  margin-right: 10px; /* 오른쪽 여백 설정 */
+  margin-top: 20px; /* 상단 여백의 크기를 조정하세요 */
+}
+
+.main5 .item2 .slideshow li:last-child {
+  margin-right: 0; /* 마지막 요소에는 오른쪽 여백 제거 */
+   
+}
+
+.main5 .item2 .slideshow img {
+  width: 100%; /* 이미지 너비 100%로 설정 */
+  height: auto; /* 이미지 높이 자동으로 설정 */
+  border-radius: 20px; /* 모서리의 둥글기 정도를 조정하세요 */
+}
+
+/*-------img2-----*/
+/*--- 로그인 --- */
+.t1-login{
+  font-size: 38px;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;  /* 가로축 가운데 정렬 */
+  align-items: center;  /* 세로축 가운데 정렬 */
+}
+
+.t2-login{
+  font-size: 18px;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;  /* 가로축 가운데 정렬 */
+  align-items: center;  /* 세로축 가운데 정렬 */
+}
+
+.main3-login {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.main3-login label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.main3-login input[type="text"],
+.main3-login input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.main3-login input[type="submit"],
+.main3-login button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  margin-bottom: 20px; /* 하단 여백의 크기를 조정하세요 */
+  color: white;
+  cursor: pointer;
+}
+
+.main3-login button.naver {
+  background-color: #1EC800;
+}
+
+.main3-login button.kakao {
+  background-color: #FFEB00;
+  color: black;
+}
+/*----------------------------------------- */
+/* 추가된 CSS 스타일 */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-group label {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"],
+.input-group input[type="date"] {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 200px;
+  margin-bottom: 8px;
+}
+
+.buy-button {
+  display: inline-block; /* 인라인 블록 요소로 표시 */
+  background-color: #007bff; /* 배경색 설정 */
+  color: #fff; /* 텍스트 색상 설정 */
+  padding: 10px 20px; /* 내부 여백 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
+  margin-top: 10px; /* 상단 여백의 크기를 조정하세요 */
+}
+
+.buy-button:hover {
+  background-color: #0056b3; /* 호버 상태 배경색 설정 */
+}
+.buy-button a {
+  color: #fff; /* 링크 텍스트 색상 설정 */
+  text-decoration: none; /* 링크 텍스트에 밑줄 제거 */
+}
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-group button {
+  flex-basis: 30%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button:first-child {
+  background-color: #999; /* 회색으로 변경 */
+}
+
+.button-group button:nth-child(2) {
+  background-color: #999; /* 회색으로 변경 */
+}
+
+.button-group button:last-child {
+  background-color: #999; /* 회색으로 변경 */
+}
+
+.button-group button:hover {
+  opacity: 0.8;
+}
+
+  .social-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .social-login button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .social-login button.naver {
+    background-color: #1ec800;
+  }
+
+  .social-login button.kakao {
+    background-color: #ffec00;
+  }
+
+  .social-login button:hover {
+    opacity: 0.8;
+  }
+  
+/* ---회원가입  ---*/
+.h1-s {
+  margin-bottom: 1px;
+}
+
+.signup-form {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .signup-form div {
+      margin-bottom: 10px;
+    }
+
+    .signup-form label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .signup-form input[type="text"],
+    .signup-form input[type="password"],
+    .signup-form input[type="email"],
+    .signup-form input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .signup-form .row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .signup-form .col {
+      flex: 1;
+    }
+
+    .signup-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .signup-form button[type="button"] {
+      background-color: #ccc;
+    }
+/* ---회원가입  ---*/
+/* ---마이페이지---*/
+.mypage-container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-left: 300px;
+}
+
+    .mypage-title {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .mypage-menu {
+      margin-bottom: 20px;
+    }
+
+    .mypage-menu ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .mypage-menu li {
+      margin-bottom: 10px;
+    }
+
+    .mypage-menu a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    .mypage-button {
+     background-color: #999; /* 버튼 색상을 회색으로 변경 */
+      color: #fff;
+      border: none;
+      padding: 10px 40px;
+      font-size: 14px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+/* ---마이페이지---*/
+/* ---비밀번호 변경---*/
+.password-change-container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .password-change-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .password-change-form {
+      margin-bottom: 20px;
+    }
+
+    .password-change-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .password-change-form input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .password-change-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .password-change-button {
+      flex: 1;
+      margin-right: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+.password-change-button {
+  background-color: gray;
+  width: 150px; /* 버튼의 가로 크기를 조절하세요 */
+  height: 40px; /* 버튼의 세로 크기를 조절하세요 */
+  display: inline-block;
+  margin-right: 30px; /* 버튼 사이의 간격을 조절하세요 */
+  margin-top: 20px; /* 원하는 상단 여백 크기를 조절하세요 */
+}
+/* ---비밀번호 변경---*/
+/*--- 관리자 ---*/
+ .admin-container {
+      width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .admin-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .admin-section {
+      margin-bottom: 30px;
+    }
+
+    .admin-section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .admin-table th,
+    .admin-table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .admin-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .admin-action-button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .admin-action-button.delete {
+      background-color: #f44336;
+    }
+/*--- 관리자 ---*/
+/*----개인정보 변경----*/
+.form-container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+.form-group button {
+  padding: 12px 44px; /* 버튼 크기 조정 */
+  background-color: #999; /* 버튼 색상을 회색으로 변경 */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/*----개인정보 변경----*/
+/*----장바구니----*/
+ .cart-container {
+      width: 600px;
+      margin: 0 auto;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: #888;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      text-align: right;
+      font-weight: bold;
+    }
+
+/*----장바구니----*/
+ 
