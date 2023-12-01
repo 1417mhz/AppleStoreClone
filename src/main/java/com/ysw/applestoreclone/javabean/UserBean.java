@@ -12,8 +12,6 @@ public class UserBean {
     private String userEmail;
     private String userName;
     private String userDob;
-    private String userGender;
-    private String userAddress;
     private String userContact;
     private String userRole;
     private int userBalance;
