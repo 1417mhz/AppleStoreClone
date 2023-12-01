@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserService {
     // 해당 소셜 로그인 ID를 가진 사용자가 있는지 확인. (소셜 로그인 검증을 위함)
@@ -73,8 +74,6 @@ public class UserService {
                     userBean.setUserEmail(rs.getString("user_email"));
                     userBean.setUserName(rs.getString("user_name"));
                     userBean.setUserDob(rs.getString("user_dob"));
-                    userBean.setUserGender(rs.getString("user_gender"));
-                    userBean.setUserAddress(rs.getString("user_address"));
                     userBean.setUserContact(rs.getString("user_contact"));
                     userBean.setUserRole(rs.getString("user_role"));
                     userBean.setUserBalance(Integer.parseInt(rs.getString("user_balance")));
@@ -193,5 +192,55 @@ public class UserService {
             e.printStackTrace();
             throw new RuntimeException("Fail to Connect DB", e);
         }
+    }
+
+    public void updateUser(UserBean userBean) throws SQLException {
+        UserBean userInfo = getUserInfoById(userBean.getUserId());
+        // 입력 된 정보만 수정 되도록 함
+        if(userBean.getUserEmail().isEmpty()) userBean.setUserEmail(userInfo.getUserEmail());
+        if(userBean.getUserName().isEmpty()) userBean.setUserName(userInfo.getUserName());
+        if(userBean.getUserDob().isEmpty()) userBean.setUserDob(userInfo.getUserDob());
+        if(userBean.getUserContact().isEmpty()) userBean.setUserContact(userInfo.getUserContact());
+
+        Connection conn = DBConn.getDBConn();
+        String query = "UPDATE user SET user_email = ?, user_name = ?, user_dob = ?, user_contact = ? WHERE user_id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, userBean.getUserEmail());
+        pstmt.setString(2, userBean.getUserName());
+        pstmt.setString(3, userBean.getUserDob());
+        pstmt.setString(4, userBean.getUserContact());
+        pstmt.setString(5, userBean.getUserId());
+        pstmt.executeUpdate();
+        conn.close();
+        pstmt.close();
+        System.out.println("!! 회원 정보 수정 성공 !!");
+    }
+
+    public ArrayList<UserBean> getAllUser() throws SQLException {
+        ArrayList<UserBean> usersArrayList = new ArrayList<UserBean>();
+        Connection conn = DBConn.getDBConn();
+        String query = "SELECT user_no, user_id, user_email, user_name, user_dob, user_contact, " +
+                        "user_role, user_balance, user_state, signup_date, leave_date FROM user";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            UserBean userBean = new UserBean();
+            userBean.setUserNo(rs.getString("user_no"));
+            userBean.setUserId(rs.getString("user_id"));
+            userBean.setUserEmail(rs.getString("user_email"));
+            userBean.setUserName(rs.getString("user_name"));
+            userBean.setUserDob(rs.getString("user_dob"));
+            userBean.setUserContact(rs.getString("user_contact"));
+            userBean.setUserRole(rs.getString("user_role"));
+            userBean.setUserBalance(Integer.parseInt(rs.getString("user_balance")));
+            userBean.setUserState(rs.getString("user_state"));
+            userBean.setSignupDate("signup_date");
+            userBean.setLeaveDate("leave_date");
+            usersArrayList.add(userBean);
+        }
+        conn.close();
+        pstmt.close();
+        rs.close();
+        return usersArrayList;
     }
 }

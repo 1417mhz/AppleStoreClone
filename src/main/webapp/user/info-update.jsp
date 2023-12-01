@@ -13,20 +13,20 @@
     <h1>개인정보 변경</h1>
     <form action="${pageContext.request.contextPath}/user/info-update-proc" method="post">
       <div class="form-group">
-        <label for="email">이메일</label>
-        <input type="email" id="email" name="email" required>
+        <label for="userEmail">이메일</label>
+        <input type="email" id="userEmail" name="userEmail">
       </div>
       <div class="form-group">
-        <label for="name">이름</label>
-        <input type="text" id="name" name="name" required>
+        <label for="userName">이름</label>
+        <input type="text" id="userName" name="userName">
       </div>
       <div class="form-group">
-        <label for="birthdate">생년월일</label>
-        <input type="date" id="birthdate" name="birthdate" required>
+        <label for="userDob">생년월일</label>
+        <input type="date" id="userDob" name="userDob">
       </div>
       <div class="form-group">
-        <label for="phone">연락처</label>
-        <input type="tel" id="phone" name="phone" required>
+        <label for="userContact">연락처</label>
+        <input type="tel" id="userContact" name="userContact">
       </div>
       <div class="form-group">
       <button type="submit">변경</button>
