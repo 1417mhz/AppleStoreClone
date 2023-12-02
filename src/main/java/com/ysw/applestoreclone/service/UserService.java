@@ -121,7 +121,7 @@ public class UserService {
                 // 비밀번호 암호화 후 저장
                 userBean.setUserPw(BCrypt.hashpw(userBean.getUserPw(), BCrypt.gensalt()));
 
-                String query = "INSERT INTO user(user_id, user_pw, user_email, user_name, user_dob, user_contact, social_id) VALUES(?, ?, ?, ?, ?, ?, ?);";
+                String query = "INSERT INTO user(user_id, user_pw, user_email, user_name, user_dob, user_contact, social_id, social_type) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
                 try (PreparedStatement pstmt = conn.prepareStatement(query);) {
                     pstmt.setString(1, userBean.getUserId());
                     pstmt.setString(2, userBean.getUserPw());
@@ -130,6 +130,7 @@ public class UserService {
                     pstmt.setString(5, userBean.getUserDob());
                     pstmt.setString(6, userBean.getUserContact());
                     pstmt.setString(7, userBean.getSocialId());
+                    pstmt.setString(8, userBean.getSocialType());
                     pstmt.executeUpdate();
 
                     System.out.println("** 회원가입 성공 **");

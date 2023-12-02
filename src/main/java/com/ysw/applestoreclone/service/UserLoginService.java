@@ -7,8 +7,7 @@ import com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
@@ -140,6 +139,103 @@ public class UserLoginService {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return userInfo;
+    }
+
+    public String getNaverAccessToken(String code, String state) {
+        String accessToken = "";
+        String refreshToken = "";
+        String clientId = SensInfoProvider.getClientId();
+        String clientSecret = SensInfoProvider.getClientSecret();
+        String redirectURI = SensInfoProvider.getNaverLoginRedirectUrl();
+        try {
+            URL url = new URL("https://nid.naver.com/oauth2.0/token");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // HTTP 요청 설정
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // POST 데이터 전송
+            String postData = "grant_type=authorization_code" +
+                    "&client_id=" + clientId +
+                    "&client_secret=" + clientSecret +
+                    "&redirect_uri=" + redirectURI +
+                    "&code=" + code +
+                    "&state=" + state;
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = postData.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+            // HTTP 응답 처리
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+
+                    // Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+                    JsonParser parser = new JsonParser();
+                    JsonElement element = JsonParser.parseString(String.valueOf(response));
+
+                    accessToken = element.getAsJsonObject().get("access_token").getAsString();
+                    refreshToken = element.getAsJsonObject().get("refresh_token").getAsString();
+                }
+            } else {
+                System.out.println("HTTP request failed with response code: " + responseCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return accessToken;
+    }
+
+    public HashMap<String, Object> getNaverUserInfo(String accessToken) throws IOException {
+        HashMap<String, Object> userInfo = new HashMap<String, Object>();
+
+        // 요청을 보낼 URL
+        URL url = new URL("https://openapi.naver.com/v1/nid/me");
+
+        // HttpURLConnection을 열고 설정
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+
+        // 응답을 읽기
+        int responseCode = connection.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            JsonParser parser = new JsonParser();
+            JsonElement element = parser.parse(String.valueOf(response));
+
+            JsonObject properties = element.getAsJsonObject().get("response").getAsJsonObject();
+            String socialId = properties.getAsJsonObject().get("id").getAsString();
+            String email = properties.getAsJsonObject().get("email").getAsString();
+            String nickname = properties.getAsJsonObject().get("name").getAsString();
+
+            userInfo.put("socialId", socialId);
+            userInfo.put("nickname", nickname);
+            userInfo.put("email", email);
+        } else {
+            // 에러 발생 시 처리
+            System.out.println("HTTP 응답 코드: " + responseCode);
+            System.out.println("에러 발생");
         }
         return userInfo;
     }

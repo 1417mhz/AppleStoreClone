@@ -16,8 +16,12 @@ public class LogoutController extends HttpServlet {
         if (session.getAttribute("isLogin").equals("true")) {
             session.removeAttribute("isLogin");
             session.removeAttribute("userId");
-            if(session.getAttribute("kakaoLogin") != null) {
+            if (session.getAttribute("kakaoLogin") != null) {
                 session.removeAttribute("kakaoLogin");
+            }
+            if (session.getAttribute("naverLogin") != null) {
+                session.removeAttribute("naverLogin");
+                session.removeAttribute("accessToken");
             }
             System.out.println("** 로그아웃 성공 **");
         } else {

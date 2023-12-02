@@ -32,6 +32,7 @@ public class SignupController extends HttpServlet {
             userBean.setUserDob(req.getParameter("userDob"));
             userBean.setUserContact(req.getParameter("userContact"));
             if(req.getParameter("socialId") != null) {
+                userBean.setSocialType(req.getParameter("socialType"));
                 userBean.setSocialId(req.getParameter("socialId"));
             }
 

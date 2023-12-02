@@ -9,6 +9,8 @@ public class UserBean {
     private String userNo;
     private String userId;
     private String userPw;
+    private String socialType;
+    private String socialId;
     private String userEmail;
     private String userName;
     private String userDob;
@@ -18,7 +20,6 @@ public class UserBean {
     private String userState;
     private String signupDate;
     private String leaveDate;
-    private String socialId;
 
     /*
     public String getUserId() {
