@@ -1,5 +1,10 @@
 package com.ysw.applestoreclone.service;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.ysw.applestoreclone.javabean.ShopDataBean;
 import com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider;
 
 import java.io.*;
@@ -8,12 +13,35 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ShopSearchDataService {
-    public String getData(String keyword) {
+
+    // API로 받아온 JSON 데이터를 객체에 매핑하여 리턴함
+    public List<ShopDataBean> getData(String keyword) {
+        String jsonData = getJsonData(keyword);
+        JsonElement jsonElement = JsonParser.parseString(jsonData);
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        JsonArray itemsArray = jsonObject.getAsJsonArray("items");
+
+        List<ShopDataBean> itemList = new ArrayList<>();
+        for (JsonElement item : itemsArray) {
+            JsonObject itemObject = item.getAsJsonObject();
+            ShopDataBean itemBean = new ShopDataBean();
+            itemBean.setItemTitle(itemObject.get("title").getAsString());
+            itemBean.setItemUrl(itemObject.get("link").getAsString());
+            itemBean.setItemPrice(itemObject.get("lprice").getAsString());
+            itemBean.setItemImgUrl(itemObject.get("image").getAsString());
+            itemList.add(itemBean);
+        }
+        return itemList;
+    }
+
+    public String getJsonData(String keyword) {
         String clientId = SensInfoProvider.getClientId();
         String clientSecret = SensInfoProvider.getClientSecret();
 
