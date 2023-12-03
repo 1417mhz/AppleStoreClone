@@ -41,7 +41,7 @@
     </form>
     <div class="social-login">
         <button class="kakao" onclick="location.href='/user/kakao-login'">카카오 로그인</button>
-        <button class="naver" onclick="">네이버 로그인</button>
+        <button class="naver" onclick="location.href='/user/naver-login'">네이버 로그인</button>
     </div>
 </section>
 <%@ include file="../modules/footer.jsp"%>

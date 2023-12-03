@@ -16,9 +16,16 @@
 %>
 <%
     boolean infoDelivered = false;
+    String currentType = "";
     if(request.getAttribute("kakaoUser") != null) {
         userInfo = (HashMap<String, Object>)request.getAttribute("kakaoUser");
         infoDelivered = true;
+        currentType = "kakao";
+    }
+    if(request.getAttribute("naverUser") != null) {
+        userInfo = (HashMap<String, Object>)request.getAttribute("naverUser");
+        infoDelivered = true;
+        currentType = "naver";
     }
 %>
 <body>
@@ -32,8 +39,14 @@
             <input type="text" id="userId" name="userId" oninput="typeOnlyEng(this)" required>
         </div>
         <div class="input-group">
+            <%
+                if(!infoDelivered) {
+            %>
             <label for="userPw">비밀번호</label>
             <input type="password" id="userPw" name="userPw" placeholder="" required>
+            <%
+                }
+            %>
         </div>
         <div class="input-group">
             <label for="userEmail">이메일 &nbsp&nbsp</label>
@@ -74,6 +87,12 @@
         <%
             if(infoDelivered) {
         %>
+        <div>
+            <div>
+                <label for="socialType">소셜로그인 타입</label>
+                <input type="text" id="socialType" name="socialType" value="<%= currentType %>" readonly>
+            </div>
+        </div>
         <div>
             <div>
                 <label for="socialId">소셜로그인 ID</label>
