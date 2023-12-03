@@ -7,6 +7,11 @@
 <link rel="stylesheet" type="text/css" href="../css/apple.css?after1">
 <title>Apple Korea</title>
 </head>
+<script>
+  const chatWinOpen = (chatId) => {
+    window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=320,height=400");
+  }
+</script>
 <body>
   <%@ include file="../modules/header.jsp"%>
 
@@ -70,7 +75,11 @@
         </tbody>
       </table>
     </div>
-  </div>
+
+    <div class="admin-section">
+      <button type="button" onclick="chatWinOpen('admin')">실시간 상담 입장</button>
+    </div>
+    </div>
 <%@ include file="../modules/footer.jsp"%>
 </body>
 </html>
