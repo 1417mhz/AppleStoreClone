@@ -6,6 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script>
+    const confirmLogout = (type) => {
+        if (confirm('로그아웃 하시겠습니까?')) {
+            if(type !== 'none') {
+                window.location.href = '/user/' + type + '-logout';
+            } else {
+                window.location.href = '/user/logout';
+            }
+        }
+    }
+</script>
 <body style="overflow-x: hidden">
 	<header>
         <div class="container">
@@ -21,19 +32,24 @@
                         if((String)session.getAttribute("isLogin") != null) {
                             String userId = (String) session.getAttribute("userId");
                             out.print("<li style=\"text-decoration-line: underline\"><a href=\"user/my-page\">" + userId + "</a></li>");
-                    %>
-                    <%
+
                         if(session.getAttribute("kakaoLogin") != null) {
-                            out.print("<li><a href=\"user/kakao-logout\">로그아웃</a></li>");
+                    %>
+                            <li><a href="#" onclick="confirmLogout('kakao')">로그아웃</a></li>
+                    <%
+                        } else if(session.getAttribute("naverLogin") != null) {
+                    %>
+                            <li><a href="#" onclick="confirmLogout('none')">로그아웃</a></li>
+                    <%
                         } else {
                     %>
-                    <li><a href="user/logout">로그아웃</a></li>
+                            <li><a href="#" onclick="confirmLogout('none')">로그아웃</a></li>
                     <%
                         }
                     } else {
                     %>
-                    <li class="green"><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-                    <li class="green"><a href="${pageContext.request.contextPath}/user/signup">회원가입</a></li>
+                        <li class="green"><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+                        <li class="green"><a href="${pageContext.request.contextPath}/user/signup">회원가입</a></li>
                     <%
                         }
                     %>
