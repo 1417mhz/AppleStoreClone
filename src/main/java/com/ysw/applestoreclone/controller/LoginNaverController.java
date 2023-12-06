@@ -33,7 +33,7 @@ public class LoginNaverController extends HttpServlet {
             if (userId != null) {
                 session.setAttribute("isLogin", "true");
                 session.setAttribute("userId", userId);
-                session.setAttribute("naverLogin", "true");
+                session.setAttribute("loginType", "naver");
                 session.setAttribute("accessToken", accessToken);
 
                 String contextPath = req.getContextPath();

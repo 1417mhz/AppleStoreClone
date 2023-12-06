@@ -31,6 +31,7 @@ public class LoginController extends HttpServlet {
         if (userLoginService.loginUser(userId, userPw)) {
             session.setAttribute("isLogin", "true");
             session.setAttribute("userId", userId);
+            session.setAttribute("loginType", "email");
 
             String contextPath = req.getContextPath();
             res.sendRedirect(contextPath + "/");

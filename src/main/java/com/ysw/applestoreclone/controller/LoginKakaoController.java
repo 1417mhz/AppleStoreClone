@@ -39,7 +39,8 @@ public class LoginKakaoController extends HttpServlet {
             if(userId != null) {
                 session.setAttribute("isLogin", "true");
                 session.setAttribute("userId", userId);
-                session.setAttribute("kakaoLogin", "true");
+                session.setAttribute("loginType", "kakao");
+                session.setAttribute("accessToken", accessToken);
 
                 String contextPath = req.getContextPath();
                 res.sendRedirect(contextPath + "/");

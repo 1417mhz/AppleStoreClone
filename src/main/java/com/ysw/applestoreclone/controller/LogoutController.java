@@ -18,6 +18,7 @@ public class LogoutController extends HttpServlet {
             session.removeAttribute("userId");
             if (session.getAttribute("kakaoLogin") != null) {
                 session.removeAttribute("kakaoLogin");
+                session.removeAttribute("accessToken");
             }
             if (session.getAttribute("naverLogin") != null) {
                 session.removeAttribute("naverLogin");
