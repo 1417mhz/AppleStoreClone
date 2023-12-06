@@ -2,8 +2,14 @@ package com.ysw.applestoreclone.service;
 
 import com.ysw.applestoreclone.javabean.DBConn;
 import com.ysw.applestoreclone.javabean.UserBean;
+import com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -174,7 +180,7 @@ public class UserService {
                 throw new RuntimeException("Fail to Connect DB", e);
             }
         } else {
-            System.out.println("!! 비밀번호 변경 싫패 !!");
+            System.out.println("!! 비밀번호 변경 실패 !!");
             throw new RuntimeException("Fail to Connect DB");
         }
     }
@@ -182,7 +188,7 @@ public class UserService {
     public void userLeave(String userId) {
         try (Connection conn = DBConn.getDBConn()) {
             String query = "UPDATE user SET leave_date = CURRENT_TIMESTAMP, " +
-                            "user_state = 'inactive' WHERE user_id = ?";
+                            "user_state = 'inactive', social_id = null WHERE user_id = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, userId);
                 pstmt.executeUpdate();
@@ -192,6 +198,80 @@ public class UserService {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Fail to Connect DB", e);
+        }
+    }
+
+    public void userLeaveKakao(String userId, String accessToken) throws IOException {
+        String reqUrl = "https://kapi.kakao.com/v1/user/unlink";
+
+        URL url = new URL(reqUrl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+
+        int responseCode = conn.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            /*
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            */
+            userLeave(userId);
+        } else {
+            // 에러 발생 시 처리
+            System.out.println("!! 탈퇴 에러 발생 !!");
+        }
+    }
+
+    public void userLeaveNaver(String userId, String accessToken) throws IOException {
+        String reqUrl = "https://nid.naver.com/oauth2.0/token";
+        URL url = new URL(reqUrl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        // 요청 메소드와 헤더 설정
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+        // 요청 파라미터 구성
+        String urlParameters = "client_id=" + SensInfoProvider.getClientId()
+                + "&client_secret=" + SensInfoProvider.getClientSecret()
+                + "&access_token=" + accessToken
+                + "&grant_type=delete"
+                + "&service_provider=NAVER";
+
+        // 출력을 사용하여 파라미터를 요청 본문에 작성할 수 있도록 설정
+        conn.setDoOutput(true);
+
+        try (OutputStream os = conn.getOutputStream()) {
+            byte[] input = urlParameters.getBytes(StandardCharsets.UTF_8);
+            os.write(input, 0, input.length);
+        }
+
+        int responseCode = conn.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            /*
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            JsonElement element = JsonParser.parseString(String.valueOf(response));
+            String result = element.getAsJsonObject().get("result").getAsString();
+            */
+            userLeave(userId);
+        } else {
+            // 에러 발생 시 처리
+            System.out.println("!! 탈퇴 에러 발생 !!");
         }
     }
 
