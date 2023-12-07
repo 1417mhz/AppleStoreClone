@@ -35,6 +35,8 @@ public class LoginNaverController extends HttpServlet {
                 session.setAttribute("userId", userId);
                 session.setAttribute("loginType", "naver");
                 session.setAttribute("accessToken", accessToken);
+                if (userService.isUserAdmin(userId))
+                    session.setAttribute("isAdmin", "true");
 
                 String contextPath = req.getContextPath();
                 res.sendRedirect(contextPath + "/");

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +12,16 @@
   const chatWinOpen = (chatId) => {
     window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=320,height=400");
   }
+  const ifNotAdmin = () => {
+    alert('접근 실패! 권한을 확인하세요.');
+    window.location.href = '/';
+  }
+  <c:if test="${empty sessionScope.isAdmin}">
+    ifNotAdmin();
+  </c:if>
 </script>
 <body>
-  <%@ include file="../modules/header.jsp"%>
+<%@ include file="../modules/header.jsp"%>
 
   <div class="admin-container">
     <h1 class="admin-title">관리자 페이지</h1>

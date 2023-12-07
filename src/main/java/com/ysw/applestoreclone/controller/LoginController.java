@@ -1,6 +1,7 @@
 package com.ysw.applestoreclone.controller;
 
 import com.ysw.applestoreclone.service.UserLoginService;
+import com.ysw.applestoreclone.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/user/loginProc")
 public class LoginController extends HttpServlet {
+    UserService userService = new UserService();
     UserLoginService userLoginService = new UserLoginService();
 
     @Override
@@ -32,10 +34,13 @@ public class LoginController extends HttpServlet {
             session.setAttribute("isLogin", "true");
             session.setAttribute("userId", userId);
             session.setAttribute("loginType", "email");
+            if (userService.isUserAdmin(userId))
+                session.setAttribute("isAdmin", "true");
 
             String contextPath = req.getContextPath();
             res.sendRedirect(contextPath + "/");
         } else {
+            session.setAttribute("message", "비밀번호가 틀립니다.");
             String contextPath = req.getContextPath();
             res.sendRedirect(contextPath + "/user/login");
         }

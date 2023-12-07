@@ -12,6 +12,7 @@ import java.io.IOException;
 public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         if (session.getAttribute("isLogin").equals("true")) {
             session.removeAttribute("isLogin");
@@ -23,6 +24,9 @@ public class LogoutController extends HttpServlet {
             if (session.getAttribute("naverLogin") != null) {
                 session.removeAttribute("naverLogin");
                 session.removeAttribute("accessToken");
+            }
+            if (session.getAttribute("isAdmin") != null) {
+                session.removeAttribute("isAdmin");
             }
             System.out.println("** 로그아웃 성공 **");
         } else {

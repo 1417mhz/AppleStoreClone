@@ -41,6 +41,8 @@ public class LoginKakaoController extends HttpServlet {
                 session.setAttribute("userId", userId);
                 session.setAttribute("loginType", "kakao");
                 session.setAttribute("accessToken", accessToken);
+                if (userService.isUserAdmin(userId))
+                    session.setAttribute("isAdmin", "true");
 
                 String contextPath = req.getContextPath();
                 res.sendRedirect(contextPath + "/");

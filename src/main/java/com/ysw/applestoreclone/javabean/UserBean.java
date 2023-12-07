@@ -16,7 +16,9 @@ public class UserBean {
     private String userDob;
     private String userContact;
     private String userRole;
+    private boolean isAdmin;
     private int userBalance;
+    private int payAmount;
     private String userState;
     private String signupDate;
     private String leaveDate;

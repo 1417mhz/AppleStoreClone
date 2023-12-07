@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/admin")
+@WebServlet("/admin-page")
 public class AdminPageController extends HttpServlet {
     UserService userService = new UserService();
     OrderService orderService = new OrderService();

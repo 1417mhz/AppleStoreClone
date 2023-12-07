@@ -40,6 +40,23 @@ public class UserService {
         }
     }
 
+    public boolean isUserAdmin(String userId) {
+        boolean isAdmin = false;
+        try (Connection conn = DBConn.getDBConn();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT is_admin FROM user WHERE user_id = ?")
+        ) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    isAdmin = rs.getBoolean("is_admin");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return isAdmin;
+    }
+
     // 사용자 비밀번호 추출 로직
     public String getUserPwById(String userId) {
         try (Connection conn = DBConn.getDBConn()) {
@@ -83,6 +100,7 @@ public class UserService {
                     userBean.setUserContact(rs.getString("user_contact"));
                     userBean.setUserRole(rs.getString("user_role"));
                     userBean.setUserBalance(Integer.parseInt(rs.getString("user_balance")));
+                    userBean.setPayAmount(Integer.parseInt(rs.getString("pay_amount")));
                     userBean.setUserState(rs.getString("user_state"));
                     userBean.setSignupDate(rs.getString("signup_date"));
                     userBean.setLeaveDate(rs.getString("leave_date"));
@@ -124,9 +142,10 @@ public class UserService {
     public void signupUser(UserBean userBean) {
         try (Connection conn = DBConn.getDBConn()) { // Connection 객체 생성 (DB 연결)
             if(!isUserDuplicate(conn, userBean.getUserId())) { // 같은 userId를 사용하는 중복된 사용자가 있는지 확인
-                // 비밀번호 암호화 후 저장
-                userBean.setUserPw(BCrypt.hashpw(userBean.getUserPw(), BCrypt.gensalt()));
-
+                if (userBean.getUserPw() != null) {
+                    // 비밀번호 암호화 후 저장
+                    userBean.setUserPw(BCrypt.hashpw(userBean.getUserPw(), BCrypt.gensalt()));
+                }
                 String query = "INSERT INTO user(user_id, user_pw, user_email, user_name, user_dob, user_contact, social_id, social_type) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
                 try (PreparedStatement pstmt = conn.prepareStatement(query);) {
                     pstmt.setString(1, userBean.getUserId());
@@ -272,6 +291,31 @@ public class UserService {
         } else {
             // 에러 발생 시 처리
             System.out.println("!! 탈퇴 에러 발생 !!");
+        }
+    }
+
+    public void updateUserRoleByPayment(String userId) {
+        System.out.println("userId = " + userId);
+        int payment = getUserInfoById(userId).getPayAmount();
+        System.out.println("payment = " + payment);
+        String userRole;
+        if (payment >= 1000000 && payment < 2000000) {
+            userRole = "Gold";
+        } else if (payment >= 2000000) {
+            userRole = "Platinum";
+        } else {
+            userRole = "Silver";
+        }
+        String query = "UPDATE user SET user_role = ? WHERE user_id = ?";
+        try (
+                Connection conn = DBConn.getDBConn();
+                PreparedStatement pstmt = conn.prepareStatement(query);
+        ) {
+            pstmt.setString(1, userRole);
+            pstmt.setString(2, userId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
