@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService {
+    UserService userService = new UserService();
+
     public void createNewOrder(OrderBean orderBean) throws SQLException {
         Connection conn = DBConn.getDBConn();
         conn.setAutoCommit(false);
         String orderQuery = "INSERT INTO product_order(product_title, order_price, buyer) values(?, ?, ?)";
-        String updateQuery = "UPDATE user SET user_balance = user_balance - ? WHERE user_id = ?";
+        String updateQuery = "UPDATE user SET user_balance = user_balance - ?, pay_amount = pay_amount + ? WHERE user_id = ?";
         try (
                 PreparedStatement pstmtOrder = conn.prepareStatement(orderQuery);
                 PreparedStatement pstmtUpdate = conn.prepareStatement(updateQuery);
@@ -26,10 +28,12 @@ public class OrderService {
             pstmtOrder.executeUpdate();
 
             pstmtUpdate.setInt(1, orderBean.getOrderPrice());
-            pstmtUpdate.setString(2, orderBean.getBuyer());
+            pstmtUpdate.setInt(2, orderBean.getOrderPrice());
+            pstmtUpdate.setString(3, orderBean.getBuyer());
             pstmtUpdate.executeUpdate();
 
             conn.commit();
+            userService.updateUserRoleByPayment(orderBean.getBuyer());
             System.out.println("** 결제 성공 **");
         } catch (SQLException e) {
             conn.rollback();
@@ -43,7 +47,7 @@ public class OrderService {
         Connection conn = DBConn.getDBConn();
         conn.setAutoCommit(false);
         String cancelQuery = "UPDATE product_order SET order_state = 'canceled', cancel_date = CURRENT_TIMESTAMP WHERE order_no = ?";
-        String updateQuery = "UPDATE user SET user_balance = user_balance + ? WHERE user_id = ?";
+        String updateQuery = "UPDATE user SET user_balance = user_balance + ?, pay_amount = pay_amount - ? WHERE user_id = ?";
         try (
                 PreparedStatement pstmtCancel = conn.prepareStatement(cancelQuery);
                 PreparedStatement pstmtUpdate = conn.prepareStatement(updateQuery);
@@ -53,10 +57,12 @@ public class OrderService {
 
             OrderBean order = getOrderByOrderNo(orderNo);
             pstmtUpdate.setInt(1, order.getOrderPrice());
-            pstmtUpdate.setString(2, order.getBuyer());
+            pstmtUpdate.setInt(2, order.getOrderPrice());
+            pstmtUpdate.setString(3, order.getBuyer());
             pstmtUpdate.executeUpdate();
 
             conn.commit();
+            userService.updateUserRoleByPayment(order.getBuyer());
             System.out.println("** 결제 취소 성공 **");
         } catch (SQLException e) {
             conn.rollback();
