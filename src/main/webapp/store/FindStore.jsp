@@ -1,21 +1,30 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"
+         pageEncoding="UTF-8" import="com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="../css/apple.css">
     <title>오프라인 스토어 검색</title>
 </head>
 <style>
-    html, body {
-        height: 100%;
+    .map-div {
+        width: 1100px;
+        height: 800px;
         margin: 0;
-    }
-    .full-page {
-        width: 100%;
-        height: 100%;
     }
 </style>
 <body>
-<!-- 지도가 표시될 곳 -->
-<div id="map" class="full-page"></div>
+<%@ include file="../modules/header.jsp"%>
+<section class="main5">
+    <div>
+        <h2>오프라인 스토어 찾기</h2>
+    </div>
+</section>
+<section class="main5">
+    <!-- 지도가 표시될 곳 -->
+    <div id="map" class="map-div"></div>
+</section>
+
+<%@ include file="../modules/footer.jsp"%>
 
 <!-- API KEY는 외부 클래스에서 받아옴 -->
 <script type="text/javascript" src=//dapi.kakao.com/v2/maps/sdk.js?appkey=<%=SensInfoProvider.getJsApiKey()%>></script>

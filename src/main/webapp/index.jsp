@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/apple.css?after4">
+  <link rel="stylesheet" type="text/css" href="css/apple.css">
   <title>Apple Korea</title>
 </head>
 <body style="overflow-x: hidden">
@@ -93,7 +93,7 @@
                  srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-50-holiday-iphone-15-pro-202311?wid=480&amp;hei=500&amp;fmt=p-jpg&amp;qlt=95&amp;.v=1696863030449, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-50-holiday-iphone-15-pro-202311?wid=960&amp;hei=1000&amp;fmt=p-jpg&amp;qlt=95&amp;.v=1696863030449 2x"
                  class="rf-ccard-img-full"></li>
         <li class="subject">iPhone15 Pro</li>
-        <li class="buy-button"><a href="#">구매하기</a></li>
+        <li class="buy-button"><a href="${pageContext.request.contextPath}/order">구매하기</a></li>
       </ul>
     </div>
     <div class="slideshow">

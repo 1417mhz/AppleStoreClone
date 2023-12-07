@@ -10,14 +10,15 @@
 </head>
 <script>
     const compareAndSubmit = () => {
-        const newPw = document.getElementById('newPw').value;
-        const confirmPw = document.getElementById('confirmPw').value;
-
-        if (newPw === confirmPw) {
-            const form = document.getElementById('submitForm');
-            form.submit();
-        } else {
-            alert('새로운 비밀번호와 확인 비밀번호가 일치하지 않습니다!');
+        const newPw = document.getElementById('new-password').value;
+        const confirmPw = document.getElementById('confirm-password').value;
+        if(confirm('정말 변경하시겠습니까?')) {
+            if (newPw === confirmPw) {
+                const form = document.getElementById('submitForm');
+                form.submit();
+            } else {
+                alert('새로운 비밀번호와 확인 비밀번호가 일치하지 않습니다!');
+            }
         }
     };
 </script>

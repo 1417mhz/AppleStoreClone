@@ -10,6 +10,12 @@
     const typeOnlyEng = (target) => {
         target.value = target.value .replace(/[^\\!-z]/gi,"");
     }
+    const confirmSignup = () => {
+        if (confirm('정말 가입하시겠습니까?')) {
+            const form = document.getElementById('submitForm');
+            form.submit();
+        }
+    }
 </script>
 <%!
     HashMap<String, Object> userInfo;
@@ -33,7 +39,7 @@
 <section class="signup-form">
     <h1 class="h1-s">Apple ID 생성</h1><br>
     <h5 class="h5-s">하나의 Apple ID로 모든 Apple 서비스를 이용할 수 있습니다.</h5>
-    <form action="${pageContext.request.contextPath}/user/signupProc" method="post">
+    <form action="${pageContext.request.contextPath}/user/signupProc" method="post" id="submitForm">
         <div class="input-group">
             <label for="userId">아이디 &nbsp&nbsp</label>
             <input type="text" id="userId" name="userId" oninput="typeOnlyEng(this)" required>
@@ -104,7 +110,7 @@
         %>
 
         <div class="button-group">
-            <button type="submit">회원가입</button>
+            <button type="button" onclick="confirmSignup()">회원가입</button>
             <button onclick="location.href='/'" type="button">취소</button>
             <button type="reset">초기화</button>
         </div>

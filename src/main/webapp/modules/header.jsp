@@ -27,25 +27,21 @@
                     <li><a href="#">iPad</a></li>
                     <li><a href="#">Watch</a></li>
                     <li><a href="#">Mac</a></li>
-                    <li><a href="#">액세서리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/store/findStore">스토어</a></li>
                     <%
                         if((String)session.getAttribute("isLogin") != null) {
                             String userId = (String) session.getAttribute("userId");
                             out.print("<li style=\"text-decoration-line: underline\"><a href=\"user/my-page\">" + userId + "</a></li>");
-
-                        if(session.getAttribute("kakaoLogin") != null) {
+                            String loginType = session.getAttribute("loginType").toString();
+                            if(loginType.equals("kakao")) {
                     %>
                             <li><a href="#" onclick="confirmLogout('kakao')">로그아웃</a></li>
                     <%
-                        } else if(session.getAttribute("naverLogin") != null) {
+                            } else {
                     %>
                             <li><a href="#" onclick="confirmLogout('none')">로그아웃</a></li>
                     <%
-                        } else {
-                    %>
-                            <li><a href="#" onclick="confirmLogout('none')">로그아웃</a></li>
-                    <%
-                        }
+                            }
                     } else {
                     %>
                         <li class="green"><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>

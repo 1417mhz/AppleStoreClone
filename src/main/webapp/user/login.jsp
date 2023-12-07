@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/apple.css?after4">
     <title>로그인</title>
 </head>
 <script>
+    <c:if test="${not empty sessionScope.message}">
+        alert("${sessionScope.message}");
+        <c:remove var="message" scope="session"/>
+    </c:if>
     // 아이디 input에 영어만 입력되도록
     const typeOnlyEng = (target) => {
         target.value = target.value .replace(/[^\\!-z]/gi,"");
@@ -36,7 +42,7 @@
         </div>
         <div>
             <h4>아직 회원이 아니신가요?</h4><br>
-            <button onclick="location.href='/user/login'" type="button">회원가입</button>
+            <button onclick="location.href='/user/signup'" type="button">회원가입</button>
         </div>
     </form>
     <div class="social-login">
