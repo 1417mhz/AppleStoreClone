@@ -25,7 +25,7 @@ public class OrderController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         OrderBean orderBean = new OrderBean();
         orderBean.setProductTitle(req.getParameter("productTitle"));
-        orderBean.setOrderPrice(Integer.parseInt(req.getParameter("orderPrice")));
+        orderBean.setOriginPrice(Integer.parseInt(req.getParameter("originPrice")));
         orderBean.setBuyer(req.getParameter("buyer"));
 
         try {

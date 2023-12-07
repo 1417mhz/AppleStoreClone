@@ -14,9 +14,12 @@ public class OrderService {
     UserService userService = new UserService();
 
     public void createNewOrder(OrderBean orderBean) throws SQLException {
+        double discountRate = getDiscountRate(orderBean.getBuyer());
+        orderBean.setOrderPrice(getDiscountPrice(orderBean.getOriginPrice(), discountRate));
+
         Connection conn = DBConn.getDBConn();
         conn.setAutoCommit(false);
-        String orderQuery = "INSERT INTO product_order(product_title, order_price, buyer) values(?, ?, ?)";
+        String orderQuery = "INSERT INTO product_order(product_title, order_price, origin_price, buyer) values(?, ?, ?, ?)";
         String updateQuery = "UPDATE user SET user_balance = user_balance - ?, pay_amount = pay_amount + ? WHERE user_id = ?";
         try (
                 PreparedStatement pstmtOrder = conn.prepareStatement(orderQuery);
@@ -24,7 +27,8 @@ public class OrderService {
         ) {
             pstmtOrder.setString(1, orderBean.getProductTitle());
             pstmtOrder.setInt(2, orderBean.getOrderPrice());
-            pstmtOrder.setString(3, orderBean.getBuyer());
+            pstmtOrder.setInt(3, orderBean.getOriginPrice());
+            pstmtOrder.setString(4, orderBean.getBuyer());
             pstmtOrder.executeUpdate();
 
             pstmtUpdate.setInt(1, orderBean.getOrderPrice());
@@ -136,5 +140,33 @@ public class OrderService {
         conn.close();
         pstmt.close();
         return orderBean;
+    }
+
+    private double getDiscountRate(String userId) {
+        String userRole = "";
+        try (Connection conn = DBConn.getDBConn()) {
+            String query = "SELECT user_role FROM user WHERE user_id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, userId);
+                ResultSet rs = pstmt.executeQuery();
+                if (rs.next()) userRole = rs.getString("user_role");
+                rs.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        switch (userRole) {
+            case "Gold":
+                return 0.1;
+            case "Platinum":
+                return 0.2;
+            case "Silver":
+            default:
+                return 0;
+        }
+    }
+
+    private int getDiscountPrice(int originPrice, double discountRate) {
+        return (int)(originPrice * (1 - discountRate));
     }
 }
