@@ -295,9 +295,7 @@ public class UserService {
     }
 
     public void updateUserRoleByPayment(String userId) {
-        System.out.println("userId = " + userId);
         int payment = getUserInfoById(userId).getPayAmount();
-        System.out.println("payment = " + payment);
         String userRole;
         if (payment >= 1000000 && payment < 2000000) {
             userRole = "Gold";
@@ -345,7 +343,7 @@ public class UserService {
         ArrayList<UserBean> usersArrayList = new ArrayList<UserBean>();
         Connection conn = DBConn.getDBConn();
         String query = "SELECT user_no, user_id, user_email, user_name, user_dob, user_contact, " +
-                        "user_role, user_balance, user_state, signup_date, leave_date FROM user";
+                        "user_role, user_balance, pay_amount, user_state, signup_date, leave_date FROM user";
         PreparedStatement pstmt = conn.prepareStatement(query);
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
@@ -358,6 +356,7 @@ public class UserService {
             userBean.setUserContact(rs.getString("user_contact"));
             userBean.setUserRole(rs.getString("user_role"));
             userBean.setUserBalance(Integer.parseInt(rs.getString("user_balance")));
+            userBean.setPayAmount(Integer.parseInt(rs.getString("pay_amount")));
             userBean.setUserState(rs.getString("user_state"));
             userBean.setSignupDate("signup_date");
             userBean.setLeaveDate("leave_date");

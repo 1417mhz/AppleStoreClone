@@ -88,7 +88,9 @@ public class OrderService {
             orderBean.setOrderNo(rs.getString("order_no"));
             orderBean.setProductTitle(rs.getString("product_title"));
             orderBean.setOrderPrice(rs.getInt("order_price"));
+            orderBean.setOriginPrice(rs.getInt("origin_price"));
             orderBean.setBuyer(rs.getString("buyer"));
+            orderBean.setOrderState(rs.getString("order_state"));
             orderBean.setOrderDate(rs.getString("order_date"));
             orderBean.setOrderCancelDate(rs.getString("cancel_date"));
             orderList.add(orderBean);
@@ -112,7 +114,9 @@ public class OrderService {
             orderBean.setOrderNo(rs.getString("order_no"));
             orderBean.setProductTitle(rs.getString("product_title"));
             orderBean.setOrderPrice(rs.getInt("order_price"));
+            orderBean.setOriginPrice(rs.getInt("origin_price"));
             orderBean.setBuyer(rs.getString("buyer"));
+            orderBean.setOrderState(rs.getString("order_state"));
             orderBean.setOrderDate(rs.getString("order_date"));
             orderBean.setOrderCancelDate(rs.getString("cancel_date"));
             orderList.add(orderBean);

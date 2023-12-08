@@ -11,6 +11,7 @@ public class OrderBean {
     private int orderPrice; // 할인 된 가격
     private int originPrice; // 정가
     private String buyer; // userId
+    private String orderState;
     private String orderDate;
     private String orderCancelDate;
 }

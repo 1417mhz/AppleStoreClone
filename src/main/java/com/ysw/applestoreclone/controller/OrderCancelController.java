@@ -24,7 +24,7 @@ public class OrderCancelController extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            res.sendRedirect(req.getContextPath() + "/");
+            res.sendRedirect(req.getContextPath() + "/user/my-page");
         }
     }
 }
