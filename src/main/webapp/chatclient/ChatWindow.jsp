@@ -1,6 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <html>
+<style>
+        /* 대화창 스타일 */
+    #chatWindow {
+        border: 1px solid #e5e5e5;
+        width: 280px;
+        height: 350px;
+        overflow-y: scroll;
+        overflow: hidden; /* 스크롤바 없애기 */
+        padding: 10px;
+        background-color: #f7f7f7;
+    }
+
+    /* 메시지 입력창 스타일 */
+    #chatMessage {
+        width: 240px;
+        height: 40px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        padding: 5px;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+
+    /* 전송 버튼 스타일 */
+    #sendBtn {
+        height: 40px;
+        padding: 0 15px;
+        border: none;
+        border-radius: 4px;
+        background-color: #0070c9;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+        /* 채팅 종료 버튼 스타일 */
+        #closeBtn {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #cccccc;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+
+    /* 대화명 입력창 스타일 */
+    #chatId {
+        width: 200px;
+        height: 30px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 5px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+        /* 사용자가 보낸 메시지 스타일 */
+        .myMsg {
+            text-align: right;
+            background-color: #e5e5e5;
+            color: #000;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* 상담원이 보낸 메시지 스타일 */
+        .agentMsg {
+            text-align: left;
+            background-color: #0070c9;
+            color: #fff;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+</style>
 <head>
     <title>채팅</title>
     <script>

@@ -38,7 +38,7 @@
 <%@ include file="../modules/header.jsp"%>
 <section class="signup-form">
     <h1 class="h1-s">Apple ID 생성</h1><br>
-    <h5 class="h5-s">하나의 Apple ID로 모든 Apple 서비스를 이용할 수 있습니다.</h5>
+    <h3 class="h3-s">하나의 Apple ID로 모든 Apple 서비스를 이용할 수 있습니다.</h3>
     <form action="${pageContext.request.contextPath}/user/signupProc" method="post" id="submitForm">
         <div class="input-group">
             <label for="userId">아이디 &nbsp&nbsp</label>
