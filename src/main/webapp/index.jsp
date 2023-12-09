@@ -4,9 +4,28 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/apple.css">
+  <link rel="stylesheet" type="text/css" href="css/apple.css?after4">
   <title>Apple Korea</title>
 </head>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
 <body style="overflow-x: hidden">
 <%@ include file="modules/header.jsp"%>
 <section class="main1">
@@ -80,7 +99,7 @@
 <section class="main4">
   <h3 class="t2">최신 제품. 주고싶은 특별한 누군가를 위한 선물</h3>
 </section>
-<section class="main4">
+<section class="main4" id="sec_iphone">
   <h3 class="t5">iPhone</h3>
 </section>
 <section class="main5">
@@ -109,7 +128,7 @@
     </div>
   </div>
 </section>
-<section class="main4">
+<section class="main4" id="sec_ipad">
   <h3 class="t5">iPad</h3>
 </section>
 <section class="main5">
@@ -138,7 +157,7 @@
     </div>
   </div>
 </section>
-<section class="main4">
+<section class="main4" id="sec_watch">
   <h3 class="t5">Watch</h3>
 </section>
 <section class="main5">
@@ -165,7 +184,7 @@
     </div>
   </div>
 </section>
-<section class="main4">
+<section class="main4" id="sec_mac">
   <h3 class="t5">Mac</h3>
 </section>
 <section class="main5">
