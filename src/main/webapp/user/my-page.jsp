@@ -6,48 +6,91 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <title>Apple Korea</title>
     <style>
-        .mypage-button {
-            background-color: #D3D3D3; /* 버튼의 배경 색깔을 연한 회색으로 설정 */
-            border: none; /* 테두리 없음 */
-            color: black; /* 글자 색깔 */
-            padding: 15px 32px; /* 패딩 */
-            text-align: center; /* 텍스트 가운데 정렬 */
-            text-decoration: none; /* 텍스트 밑줄 없음 */
-            display: flex; /* Flexbox 사용 */
-            justify-content: center; /* 가로 중앙 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-            font-size: 16px; /* 폰트 크기 */
-            margin: 0px 2px; /* 위아래 간격을 10px로 설정 */
-            cursor: pointer; /* 마우스 포인터 */
-            border-radius: 12px; /* 버튼 모서리 둥글게 */
-            width: 150px; /* 버튼의 폭을 늘림 */
-            height: 45px; /* 버튼의 높이를 늘림 */
+
+        /*--------------------------------------------------------------------------*/
+        body {
+            font-family: 'San Francisco', 'Helvetica Neue', Arial, sans-serif; /* 애플 사이트에서 사용하는 폰트 */
+            background-color: #fff; /* 흰색 배경 */
+            color: #333; /* 어두운 텍스트 색상 */
         }
 
+        .main-user {
+            display: flex; /* Flexbox 사용 */
+            justify-content: space-between; /* 두 요소 사이에 공간 추가 */
+            padding: 0 10%; /* 양쪽에 10%의 패딩을 추가하여 총 너비가 100%가 되도록 함 */
+        }
+
+        .mypage-container{
+            width: 17%; /* 너비를 20%로 설정 */
+            box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
+        }
+        .mypage-admin{
+            width: 65%; /* 너비를 40%로 설정 */
+            box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
+        }
+        .admin-table {
+            width: 100%; /* 테이블 너비를 100%로 설정 */
+            border-collapse: collapse; /* 테이블 셀의 테두리를 합치도록 설정 */
+        }
+
+        .admin-table th, .admin-table td {
+            border: 1px solid #ccc; /* 테이블 셀에 테두리 추가 */
+            padding: 10px; /* 테이블 셀에 패딩 추가 */
+            text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+        }
+
+        .mypage-title {
+            font-size: 2em; /* 제목 크기 */
+            font-weight: bold; /* 굵은 폰트 */
+            border-bottom: 1px solid #333; /* 제목 밑줄 */
+            margin-bottom: 20px; /* 제목과 내용 사이의 간격 */
+        }
+
+        .mypage-menu {
+            margin-bottom: 20px; /* 메뉴 간 간격 */
+        }
+
+        .mypage-menu ul {
+            list-style: none; /* 리스트 스타일 제거 */
+            padding: 0; /* 리스트 패딩 제거 */
+        }
+
+        .mypage-menu li {
+            margin-bottom: 10px; /* 리스트 아이템 간 간격 */
+        }
+
+        .mypage-menu a {
+            color: #0070c9; /* 링크 색상 */
+            text-decoration: none; /* 링크 밑줄 제거 */
+        }
+
+        .mypage-menu a:hover {
+            text-decoration: underline; /* 링크에 마우스를 올렸을 때 밑줄 추가 */
+        }
+
+        .mypage-button {
+            background-color: #d3d3d3; /* 버튼 배경색을 연한 회색으로 변경 */
+            color: #000; /* 버튼 텍스트 색상을 검은색으로 변경 */
+            border: none; /* 버튼 테두리 제거 */
+            padding: 10px 20px; /* 버튼 내부 여백 */
+            margin-bottom: 10px; /* 버튼 간 간격 */
+            cursor: pointer; /* 마우스를 올렸을 때 커서가 손가락 모양으로 바뀌게 설정 */
+            width: 150px; /* 버튼의 너비를 100px로 설정 */
+            height: 40px; /* 버튼의 높이를 40px로 설정 */
+            border-radius: 10px; /* 모서리를 둥글게 만듦 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
+        }
+
+        .mypage-button:hover {
+            background-color: #a9a9a9; /* 마우스를 올렸을 때 버튼 배경색을 진한 회색으로 변경 */
+        }
 
         .mypage-button:active {
-            background-color: #A9A9A9; /* 버튼 클릭 시 배경 색깔을 진한 회색으로 설정 */
+            background-color: #696969; /* 버튼을 클릭할 때 배경색을 더 진한 회색으로 변경 */
         }
+
+
         /*--------------------------------------------------------------------------*/
-        .main-user {
-            display: flex; /* flex 레이아웃 활성화 */
-
-        }
-
-        .mypage-container {
-            margin-left: 20%;
-            width: 40%; /* 너비 설정 */
-        }
-
-        .mypage-admin {
-            margin-left: 2%; /* .mypage-container와의 간격 조절 */
-            margin-right: 15%; /* 오른쪽으로 30% 떨어지게 만듬 */
-            width: 60%; /* 너비 설정 */
-        }
-        .mypage-admin {
-            font-family: 'Roboto', sans-serif; /* 폰트 설정 */
-        }
-
         .admin-table {
             width: 100%;
             border-collapse: collapse;
@@ -124,7 +167,7 @@
         <button class="mypage-button" type="button" onclick="chatWinOpen('user')">실시간 상담</button><br>
         <button class="mypage-button" onclick="confirmLeave()" type="button">회원 탈퇴</button><br>
         <c:if test="${not empty sessionScope.isAdmin}">
-            <button class="mypage-button" type="button" onclick="location.href='/admin-page'">관리자</button>
+            <button class="mypage-button" type="button" onclick="location.href='/admin-page'">관리자 페이지</button>
         </c:if>
     </div>
     <div class="mypage-admin">

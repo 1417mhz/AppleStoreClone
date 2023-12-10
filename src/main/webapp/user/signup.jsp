@@ -41,54 +41,54 @@
     <h3 class="h3-s">하나의 Apple ID로 모든 Apple 서비스를 이용할 수 있습니다.</h3>
     <form action="${pageContext.request.contextPath}/user/signupProc" method="post" id="submitForm">
         <div class="input-group">
-            <label for="userId">아이디 &nbsp&nbsp</label>
-            <input type="text" id="userId" name="userId" oninput="typeOnlyEng(this)" required>
+            <label for="userId"></label>
+            <input type="text" id="userId" name="userId" oninput="typeOnlyEng(this)" placeholder="아이디를 입력하세요" required>
         </div>
         <div class="input-group">
             <%
                 if(!infoDelivered) {
             %>
-            <label for="userPw">비밀번호</label>
-            <input type="password" id="userPw" name="userPw" placeholder="" required>
+            <label for="userPw"></label>
+            <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요" required>
             <%
                 }
             %>
         </div>
         <div class="input-group">
-            <label for="userEmail">이메일 &nbsp&nbsp</label>
+            <label for="userEmail"></label>
             <%
                 if(infoDelivered) {
             %>
-            <input type="email" id="userEmail" name="userEmail" value="<%= userInfo.get("email") %>" readonly>
+            <input type="email" id="userEmail" name="userEmail" value="<%= userInfo.get("email") %>" placeholder="이메일을 입력하세요" required>
             <%
             } else {
             %>
-            <input type="email" id="userEmail" name="userEmail" placeholder="" required>
+            <input type="email" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요" required>
             <%
                 }
             %>
         </div>
         <div class="input-group">
-            <label for="userName">성명 &nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <label for="userName"></label>
             <%
                 if(infoDelivered) {
             %>
-            <input type="text" id="userName" name="userName" value="<%= userInfo.get("nickname") %>" required>
+            <input type="text" id="userName" name="userName" value="<%= userInfo.get("nickname") %>" placeholder="이름을 입력하세요" required>
             <%
             } else {
             %>
-            <input type="text" id="userName" name="userName" placeholder="" required>
+            <input type="text" id="userName" name="userName" placeholder="이름을 입력하세요" required>
             <%
                 }
             %>
         </div>
         <div class="input-group">
-            <label for="userDob">생년월일</label>
-            <input type="date" id="userDob" name="userDob" placeholder="" required>
+            <label for="userDob"></label>
+            <input type="date" id="userDob" name="userDob"  placeholder="생년원일을 입력하세요" required>
         </div>
         <div class="input-group">
-            <label for="userContact">연락처 &nbsp&nbsp</label>
-            <input type="text" id="userContact" name="userContact" placeholder="" required>
+            <label for="userContact"></label>
+            <input type="text" id="userContact" name="userContact" placeholder="연락처를 입력하세요" required>
         </div>
         <%
             if(infoDelivered) {

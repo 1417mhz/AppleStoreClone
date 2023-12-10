@@ -27,16 +27,16 @@
     <h1 class="password-change-title">비밀번호 수정</h1>
     <form action="${pageContext.request.contextPath}/user/pw-change-proc" class="password-change-form" method="post" id="submitForm">
         <div>
-            <label for="current-password">현재 비밀번호</label>
-            <input type="password" id="current-password" name="currentPw" required>
+            <label for="current-password"></label>
+            <input type="password" id="current-password" name="currentPw" placeholder="현재 비밀번호" required>
         </div>
         <div>
-            <label for="new-password">변경할 비밀번호</label>
-            <input type="password" id="new-password" name="newPw" required>
+            <label for="new-password"></label>
+            <input type="password" id="new-password" name="newPw" placeholder="새로운 비밀번호" required>
         </div>
         <div>
-            <label for="confirm-password">비밀번호 확인</label>
-            <input type="password" id="confirm-password" name="confirmPw" required>
+            <label for="confirm-password"></label>
+            <input type="password" id="confirm-password" name="confirmPw" placeholder="새로운 비밀번호 확인" required>
         </div>
         <button class="password-change-button" onclick="compareAndSubmit()" type="button">변경</button>
         <button class="password-change-button" onclick="location.href='/'" type="button">취소</button>
