@@ -1,5 +1,6 @@
 package com.ysw.applestoreclone.controller;
 
+import com.ysw.applestoreclone.javabean.SocialUserBean;
 import com.ysw.applestoreclone.service.UserLoginService;
 import com.ysw.applestoreclone.service.UserService;
 
@@ -48,7 +49,12 @@ public class LoginKakaoController extends HttpServlet {
                 res.sendRedirect(contextPath + "/");
             } else {
                 // 아직 회원가입이 안 된 유저라면 회원가입을 진행하도록 함
-                req.setAttribute("kakaoUser", userInfo);
+                SocialUserBean socialUserBean = new SocialUserBean();
+                socialUserBean.setUserEmail(userInfo.get("email").toString());
+                socialUserBean.setUserName(userInfo.get("nickname").toString());
+                socialUserBean.setSocialId(userInfo.get("socialId").toString());
+                socialUserBean.setSocialType("kakao");
+                req.setAttribute("signupUser", socialUserBean);
 
                 String viewPath = "/user/signup.jsp";
                 RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
