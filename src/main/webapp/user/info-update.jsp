@@ -7,38 +7,29 @@
 <link rel="stylesheet" type="text/css" href="../css/apple.css?after3">
 <title>Apple Korea</title>
 </head>
-<script>
-  const confirmUpdate = () => {
-    if (confirm('정말 변경하시겠습니까?')) {
-      const form = document.getElementById('submitForm');
-      form.submit();
-    }
-  }
-</script>
 <body style="overflow-x: hidden">
   <%@ include file="../modules/header.jsp"%>
   <div class="form-container">
     <h1>개인정보 변경</h1>
-    <form action="${pageContext.request.contextPath}/user/info-update-proc" method="post" id="submitForm">
+    <form action="${pageContext.request.contextPath}/user/info-update-proc" method="post">
       <div class="form-group">
-        <label for="userEmail">이메일</label>
-        <input type="email" id="userEmail" name="userEmail">
+        <label for="userEmail"></label>
+        <input type="email" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요" required>
       </div>
       <div class="form-group">
-        <label for="userName">이름</label>
-        <input type="text" id="userName" name="userName">
+        <label for="userName"></label>
+        <input type="text" id="userName" name="userName" placeholder="이름을 입력하세요" required>
       </div>
       <div class="form-group">
-        <label for="userDob">생년월일</label>
-        <input type="date" id="userDob" name="userDob">
+        <label for="userDob"></label>
+        <input type="date" id="userDob" name="userDob" placeholder="생년월일을 입력하세요" required>
       </div>
       <div class="form-group">
-        <label for="userContact">연락처</label>
-        <input type="tel" id="userContact" name="userContact">
+        <label for="userContact"></label>
+        <input type="tel" id="userContact" name="userContact" placeholder="연락처를 입력하세요" required>
       </div>
       <div class="form-group">
-        <button type="button" onclick="confirmUpdate()">변경</button>
-        <button type="button" onclick="location.href='/user/my-page'">취소</button>
+      <button type="submit">변경</button>
       </div>
     </form>
   </div>

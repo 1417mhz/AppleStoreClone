@@ -5,9 +5,30 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="../css/apple.css?after1">
+  <link rel="stylesheet" type="text/css" href="../css/apple.css?after9">
   <title>Apple Korea</title>
   <style>
+    /*-----관리자 페이지 ------*/
+    .admin-btn {
+      background-color: #D3D3D3; /* 버튼의 배경 색깔을 연한 회색으로 설정 */
+      border: none; /* 버튼의 테두리를 제거 */
+      display: flex; /* Flexbox 사용 */
+      justify-content: center; /* 가로 중앙 정렬 */
+      align-items: center; /* 세로 중앙 정렬 */
+      font-size: 16px; /* 폰트 크기 */
+      margin: 0px 2px; /* 위아래 간격을 10px로 설정 */
+      cursor: pointer; /* 마우스 포인터 */
+      border-radius: 12px; /* 버튼 모서리 둥글게 */
+      width: 150px; /* 버튼의 폭을 늘림 */
+      height: 45px; /* 버튼의 높이를 늘림 */
+      cursor: pointer; /* 마우스를 올렸을 때 커서가 손가락 모양으로 바뀌게 설정 */
+      transition: all 0.3s ease; /* 버튼의 색상과 크기가 부드럽게 변하게 설정 */
+    }
+
+    .admin-btn:active {
+      background-color: #333; /* 버튼을 클릭했을 때 배경색을 진한 회색으로 설정 */
+      transform: scale(1.1); /* 버튼을 클릭했을 때 버튼의 크기를 10% 증가시킴 */
+    }
     .admin-container {
       font-family: 'Roboto', sans-serif; /* 폰트 설정 */
     }
@@ -54,7 +75,7 @@
       font-size: 14px;
       cursor: pointer;
     }
-
+    /*-----관리자 페이지 ------*/
   </style>
 </head>
 <script>
@@ -175,7 +196,7 @@
 
 
   <div class="admin-section">
-    <button type="button" onclick="chatWinOpen('admin')">실시간 상담 입장</button>
+    <button class="admin-btn" type="button" onclick="chatWinOpen('admin')">실시간 상담 입장</button>
   </div>
 </div>
 <%@ include file="../modules/footer.jsp"%>
