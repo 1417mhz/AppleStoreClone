@@ -2,7 +2,7 @@ a:link, a:visited, a:hover, a:active {color:#333;}
 .container {
     width: 100%;
     margin: 0 auto;
-    height: 85px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,11 +18,12 @@ body {
 }
 /* ---header ---*/
 .top_menu ul li a {
-    transition: font-size 0.3s ease; /* 폰트 크기가 부드럽게 변하도록 설정 */
+    /*transition: font-size 0.3s ease; !* 폰트 크기가 부드럽게 변하도록 설정 *!*/
+    font-size: 0.95em;
 }
 
 .top_menu ul li a:hover {
-    font-size: 1.1em; /* 마우스를 올렸을 때 폰트 크기를 1.1em으로 설정 */
+    /*font-size: 1.1em; !* 마우스를 올렸을 때 폰트 크기를 1.1em으로 설정 *!*/
 }
 /* ---header ---*/
 .main3 .item1 ul li img {
@@ -38,7 +39,7 @@ body {
 }
 
 .main5 .item2 .slideshow ul li img:hover {
-    transform: scale(1.1); /* 마우스를 올렸을 때 이미지 크기를 1.1배로 설정 */
+    transform: scale(1.05); /* 마우스를 올렸을 때 이미지 크기를 1.1배로 설정 */
 }
 
 header nav ul {

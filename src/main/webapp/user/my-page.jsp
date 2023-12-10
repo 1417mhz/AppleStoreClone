@@ -159,7 +159,6 @@
         </div>
         <div class="mypage-menu">
             <ul>
-                <li><a href="#">주문내역</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/info-update">개인정보 변경</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/pw-change">비밀번호 변경</a></li>
             </ul>

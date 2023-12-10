@@ -192,9 +192,6 @@
       </tbody>
     </table>
   </div>
-
-
-
   <div class="admin-section">
     <button class="admin-btn" type="button" onclick="chatWinOpen('admin')">실시간 상담 입장</button>
   </div>

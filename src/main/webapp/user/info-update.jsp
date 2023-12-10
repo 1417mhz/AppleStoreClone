@@ -7,6 +7,14 @@
 <link rel="stylesheet" type="text/css" href="../css/apple.css?after3">
 <title>Apple Korea</title>
 </head>
+<script>
+  const updateConfirm = () => {
+    if (confirm('정말 변경하시겠습니까?')) {
+      const form = document.getElementById('submitForm');
+      form.submit();
+    }
+  }
+</script>
 <body style="overflow-x: hidden">
   <%@ include file="../modules/header.jsp"%>
   <div class="form-container">
@@ -29,7 +37,8 @@
         <input type="tel" id="userContact" name="userContact" placeholder="연락처를 입력하세요" required>
       </div>
       <div class="form-group">
-      <button type="submit">변경</button>
+      <button type="button" onclick="updateConfirm()" id="submitForm">변경</button>
+      <button type="button" onclick="location.href='/user/my-page'">취소</button>
       </div>
     </form>
   </div>

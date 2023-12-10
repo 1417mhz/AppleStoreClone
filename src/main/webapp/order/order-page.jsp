@@ -164,9 +164,6 @@
         .color-selection input[type="radio"]:checked + label {
             border: 2px solid #f35429;
         }
-
-
-
     </style>
     <script>
         window.onload = function() {
@@ -180,7 +177,6 @@
             });
         };
     </script>
-
 </head>
 <body>
 <%@ include file="../modules/header.jsp" %>
