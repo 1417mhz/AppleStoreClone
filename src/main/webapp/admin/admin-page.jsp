@@ -80,7 +80,7 @@
 </head>
 <script>
   const chatWinOpen = (chatId) => {
-    window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=320,height=400");
+    window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=305,height=385");
   }
   const ifNotAdmin = () => {
     alert('접근 실패! 권한을 확인하세요.');

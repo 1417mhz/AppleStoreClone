@@ -23,10 +23,11 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-left: 20%;
+            margin-left: 25%;
         }
         .item-container{
-            margin-left: 250px;
+            margin-left: 50px;
+            margin-right: 200px;
         }
 
         .buy-image {
