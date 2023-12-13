@@ -23,10 +23,11 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-left: 20%;
+            margin-left: 25%;
         }
         .item-container{
-            margin-left: 250px;
+            margin-left: 50px;
+            margin-right: 200px;
         }
 
         .buy-image {
@@ -164,6 +165,9 @@
         .color-selection input[type="radio"]:checked + label {
             border: 2px solid #f35429;
         }
+
+
+
     </style>
     <script>
         window.onload = function() {
@@ -177,6 +181,7 @@
             });
         };
     </script>
+
 </head>
 <body>
 <%@ include file="../modules/header.jsp" %>

@@ -2,21 +2,20 @@
          pageEncoding="UTF-8"%>
 <html>
 <style>
-        /* 대화창 스타일 */
+    /* 대화창 스타일 */
     #chatWindow {
         border: 1px solid #e5e5e5;
-        width: 280px;
+        width: 295px;
         height: 350px;
         overflow-y: scroll;
-        overflow: hidden; /* 스크롤바 없애기 */
         padding: 10px;
         background-color: #f7f7f7;
+        margin-bottom: 5px;
     }
 
     /* 메시지 입력창 스타일 */
     #chatMessage {
-        width: 240px;
-        height: 40px;
+
         border: 1px solid #e5e5e5;
         border-radius: 4px;
         padding: 5px;
@@ -36,67 +35,56 @@
         cursor: pointer;
     }
 
-        /* 채팅 종료 버튼 스타일 */
-        #closeBtn {
-            margin-bottom: 10px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #cccccc;
-            color: #fff;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-
-    /* 대화명 입력창 스타일 */
-    #chatId {
-        width: 200px;
-        height: 30px;
-        border: 1px solid #e5e5e5;
-        border-radius: 4px;
-        background-color: #fff;
-        padding: 5px;
+    /* 사용자가 보낸 메시지 스타일 */
+    .myMsg {
+        text-align: right;
+        background-color: #e5e5e5;
+        color: #000;
+        padding: 8px;
         margin-bottom: 10px;
+        border-radius: 4px;
         font-size: 14px;
     }
 
-        /* 사용자가 보낸 메시지 스타일 */
-        .myMsg {
-            text-align: right;
-            background-color: #e5e5e5;
-            color: #000;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+    /* 상담원이 보낸 메시지 스타일 */
+    .adminMsg {
+        text-align: left;
+        background-color: #808080;
+        color: #fff;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    /* 스크롤바 디자인 변경 */
+    #chatWindow::-webkit-scrollbar {
+        width: 8px;
+    }
 
-        /* 상담원이 보낸 메시지 스타일 */
-        .agentMsg {
-            text-align: left;
-            background-color: #0070c9;
-            color: #fff;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+    #chatWindow::-webkit-scrollbar-track {
+        background-color: #f7f7f7;
+    }
 
+    #chatWindow::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+    }
+
+    #chatWindow::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+    }
 </style>
 <head>
     <title>채팅</title>
     <script>
         var webSocket = new WebSocket("ws://localhost:8090/ChatingServer");
-        var chatWindow, chatMessage, chatId;
+        var chatWindow, chatMessage, chatId = '${param.chatId}';
 
         // 채팅창이 열리면 대화창, 메시지 입력창, 대화명 표시란으로 사용할 DOM 객체 저장
         window.onload = function() {
             chatWindow = document.getElementById("chatWindow");
             chatMessage = document.getElementById("chatMessage");
-            chatId = document.getElementById('chatId').value;
         }
-
         // 메시지 전송
         function sendMessage() {
             // 대화창에 표시
@@ -118,7 +106,7 @@
             }
         }
 
-        // 웹소켓 서버에 연결됐을 때 실행
+        /*// 웹소켓 서버에 연결됐을 때 실행
         webSocket.onopen = function(event) {
             chatWindow.innerHTML += "웹소켓 서버에 연결되었습니다.<br/>";
         };
@@ -126,7 +114,7 @@
         // 웹소켓이 닫혔을 때(서버와의 연결이 끊겼을 때) 실행
         webSocket.onclose = function(event) {
             chatWindow.innerHTML += "웹소켓 서버가 종료되었습니다.<br/>";
-        };
+        };*/
 
         // 에러 발생 시 실행
         webSocket.onerror = function(event) {
@@ -147,11 +135,16 @@
                     }
                 }
                 else {  // 일반 대화
-                    chatWindow.innerHTML += "<div>" + sender + " : " + content + "</div>";
+                    if (sender === 'admin') {  // 상담원이 보낸 메시지
+                        chatWindow.innerHTML += "<div class='adminMsg'>" + sender + " : " + content + "</div>";
+                    } else {  // 사용자가 보낸 메시지
+                        chatWindow.innerHTML += "<div>" + sender + " : " + content + "</div>";
+                    }
                 }
             }
             chatWindow.scrollTop = chatWindow.scrollHeight;
         };
+
     </script>
     <style>  <!-- 대화창 스타일 지정 -->
     #chatWindow{border:1px solid black; width:270px; height:310px; overflow:scroll; padding:5px;}
@@ -164,8 +157,6 @@
 </head>
 
 <body>  <!-- 대화창 UI 구조 정의 -->
-대화명 : <input type="text" id="chatId" value="${ param.chatId }" readonly />
-<button id="closeBtn" onclick="disconnect();">채팅 종료</button>
 <div id="chatWindow"></div>
 <div>
     <input type="text" id="chatMessage" onkeyup="enterKey();">

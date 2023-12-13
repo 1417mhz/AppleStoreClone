@@ -141,7 +141,7 @@
         }
     }
     const chatWinOpen = (chatId) => {
-        window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=320,height=400");
+        window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=331,height=438");
     }
 </script>
 <body>
