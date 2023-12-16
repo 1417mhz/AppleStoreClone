@@ -80,7 +80,7 @@
 </head>
 <script>
   const chatWinOpen = (chatId) => {
-    window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=305,height=385");
+    window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=331,height=438");
   }
   const ifNotAdmin = () => {
     alert('접근 실패! 권한을 확인하세요.');
@@ -192,9 +192,6 @@
       </tbody>
     </table>
   </div>
-
-
-
   <div class="admin-section">
     <button class="admin-btn" type="button" onclick="chatWinOpen('admin')">실시간 상담 입장</button>
   </div>

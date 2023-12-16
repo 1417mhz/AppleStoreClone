@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -30,27 +30,22 @@
                 <li><a href="${pageContext.request.contextPath}/#sec_watch">Watch</a></li>
                 <li><a href="${pageContext.request.contextPath}/#sec_mac">Mac</a></li>
                 <li><a href="${pageContext.request.contextPath}/store/findStore">스토어</a></li>
-                <%
-                    if((String)session.getAttribute("isLogin") != null) {
-                        String userId = (String) session.getAttribute("userId");
-                        out.print("<li style=\"text-decoration-line: underline\"><a href=\"user/my-page\">" + userId + "</a></li>");
-                        String loginType = session.getAttribute("loginType").toString();
-                        if(loginType.equals("kakao")) {
-                %>
-                <li><a href="#" onclick="confirmLogout('kakao')">로그아웃</a></li>
-                <%
-                } else {
-                %>
-                <li><a href="#" onclick="confirmLogout('none')">로그아웃</a></li>
-                <%
-                    }
-                } else {
-                %>
-                <li class="green"><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-                <li class="green"><a href="${pageContext.request.contextPath}/user/signup">회원가입</a></li>
-                <%
-                    }
-                %>
+                <c:if test="${not empty sessionScope.isLogin}" var="isLogin">
+                    <li style="text-decoration-line: underline"><a href="${pageContext.request.contextPath}/user/my-page">${sessionScope.userId}</a></li>
+                    <c:if test="${sessionScope.loginType eq 'email'}" var="loginType">
+                        <li><a href="#" onclick="confirmLogout('none')">로그아웃</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.loginType eq 'kakao'}" var="loginType">
+                        <li><a href="#" onclick="confirmLogout('kakao')">로그아웃</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.loginType eq 'naver'}" var="loginType">
+                        <li><a href="#" onclick="confirmLogout('none')">로그아웃</a></li>
+                    </c:if>
+                </c:if>
+                <c:if test="${empty sessionScope.isLogin}" var="isLogin">
+                    <li class="green"><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+                    <li class="green"><a href="${pageContext.request.contextPath}/user/signup">회원가입</a></li>
+                </c:if>
             </ul>
         </nav> <!-- top_menu -->
     </div>

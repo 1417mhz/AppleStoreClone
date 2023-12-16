@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.HashMap" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/apple.css?after2">
@@ -17,23 +17,6 @@
         }
     }
 </script>
-<%!
-    HashMap<String, Object> userInfo;
-%>
-<%
-    boolean infoDelivered = false;
-    String currentType = "";
-    if(request.getAttribute("kakaoUser") != null) {
-        userInfo = (HashMap<String, Object>)request.getAttribute("kakaoUser");
-        infoDelivered = true;
-        currentType = "kakao";
-    }
-    if(request.getAttribute("naverUser") != null) {
-        userInfo = (HashMap<String, Object>)request.getAttribute("naverUser");
-        infoDelivered = true;
-        currentType = "naver";
-    }
-%>
 <body>
 <%@ include file="../modules/header.jsp"%>
 <section class="signup-form">
@@ -44,43 +27,31 @@
             <label for="userId"></label>
             <input type="text" id="userId" name="userId" oninput="typeOnlyEng(this)" placeholder="아이디를 입력하세요" required>
         </div>
+        <c:if test="${empty signupUser}">
         <div class="input-group">
-            <%
-                if(!infoDelivered) {
-            %>
             <label for="userPw"></label>
             <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요" required>
-            <%
-                }
-            %>
         </div>
+        </c:if>
         <div class="input-group">
             <label for="userEmail"></label>
-            <%
-                if(infoDelivered) {
-            %>
-            <input type="email" id="userEmail" name="userEmail" value="<%= userInfo.get("email") %>" placeholder="이메일을 입력하세요" required>
-            <%
-            } else {
-            %>
-            <input type="email" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요" required>
-            <%
-                }
-            %>
+            <c:choose>
+                <c:when test="${not empty signupUser}">
+                    <input type="email" id="userEmail" name="userEmail" value="${signupUser.userEmail}" readonly>
+                </c:when>
+                <c:otherwise>
+                    <input type="email" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요" required>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="input-group">
             <label for="userName"></label>
-            <%
-                if(infoDelivered) {
-            %>
-            <input type="text" id="userName" name="userName" value="<%= userInfo.get("nickname") %>" placeholder="이름을 입력하세요" required>
-            <%
-            } else {
-            %>
-            <input type="text" id="userName" name="userName" placeholder="이름을 입력하세요" required>
-            <%
-                }
-            %>
+            <c:if test="${not empty signupUser}">
+                <input type="text" id="userName" name="userName" value="${signupUser.userName}" placeholder="이름을 입력하세요" required>
+            </c:if>
+            <c:if test="${empty signupUser}">
+                <input type="text" id="userName" name="userName" placeholder="이름을 입력하세요" required>
+            </c:if>
         </div>
         <div class="input-group">
             <label for="userDob"></label>
@@ -90,25 +61,10 @@
             <label for="userContact"></label>
             <input type="text" id="userContact" name="userContact" placeholder="연락처를 입력하세요" required>
         </div>
-        <%
-            if(infoDelivered) {
-        %>
-        <div>
-            <div>
-                <label for="socialType">소셜로그인 타입</label>
-                <input type="text" id="socialType" name="socialType" value="<%= currentType %>" readonly>
-            </div>
-        </div>
-        <div>
-            <div>
-                <label for="socialId">소셜로그인 ID</label>
-                <input type="text" id="socialId" name="socialId" value="<%= userInfo.get("socialId") %>" readonly>
-            </div>
-        </div>
-        <%
-            }
-        %>
-
+        <c:if test="${not empty signupUser}">
+            <input type="hidden" id="socialType" name="socialType" value="${signupUser.socialType}">
+            <input type="hidden" id="socialId" name="socialId" value="${signupUser.socialId}">
+        </c:if>
         <div class="button-group">
             <button type="button" onclick="confirmSignup()">회원가입</button>
             <button onclick="location.href='/'" type="button">취소</button>

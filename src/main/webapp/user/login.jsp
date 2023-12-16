@@ -128,41 +128,41 @@
     }
 </script>
 <body class="login-body">
-<%@ include file="../modules/header.jsp"%>
-<section class="main1-login">
-    <div class="main1-message">
-        <h1 class="t1-login">더욱 빠르게 결제하시려면 로그인하세요.</h1>
-    </div>
-</section> <!-- section main1 -->
-<section class="main2-login">
-    <h3 class="t2-login">Apple Store에 로그인하세요</h3>
-</section>
-<section class="main3-login">
-    <form action="${pageContext.request.contextPath}/user/loginProc" method="post">
-        <div class="input-group">
-            <label for="userId" class="login-t1"></label>
-            <input type="text" id="userId" name="userId" oninput="typeOnlyEng(this)" placeholder="아이디를 입력하세요" required>
+    <%@ include file="../modules/header.jsp"%>
+    <section class="main1-login">
+        <div class="main1-message">
+            <h1 class="t1-login">더욱 빠르게 결제하시려면 로그인하세요.</h1>
+        </div>
+    </section> <!-- section main1 -->
+    <section class="main2-login">
+        <h3 class="t2-login">Apple Store에 로그인하세요</h3>
+    </section>
+    <section class="main3-login">
+        <form action="${pageContext.request.contextPath}/user/loginProc" method="post">
+            <div class="input-group">
+                <label for="userId" class="login-t1"></label>
+                <input type="text" id="userId" name="userId" oninput="typeOnlyEng(this)" placeholder="아이디를 입력하세요" required>
+            </div>
+
+            <div class="input-group">
+                <label for="userPw" class="login-t1" ></label>
+                <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요" required>
+            </div>
+            <div class="button-group1">
+                <button class="login-btn1" type="submit">로그인</button>
+                <button class="login-btn2" onclick="location.href='/'" type="button">&nbsp취소&nbsp</button>
+            </div>
+        </form>
+        <div class="button-group3">
+            <button class="kakao" onclick="location.href='/user/kakao-login'">카카오</button>
+            <button class="naver" onclick="location.href='/user/naver-login'">네이버</button>
+        </div>
+        <div class="button-group2">
+            <span>Apple ID가 없으십니까?</span>
+            <a href="${pageContext.request.contextPath}/user/signup" class="create-link">지금 만드세요!</a>
         </div>
 
-        <div class="input-group">
-            <label for="userPw" class="login-t1" ></label>
-            <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요" required>
-        </div>
-        <div class="button-group1">
-            <button class="login-btn1" type="submit">로그인</button>
-            <button class="login-btn2" onclick="location.href='/'" type="button">&nbsp취소&nbsp</button>
-        </div>
-    </form>
-    <div class="button-group3">
-        <button class="kakao" onclick="location.href='/user/kakao-login'">카카오</button>
-        <button class="naver" onclick="location.href='/user/naver-login'">네이버</button>
-    </div>
-    <div class="button-group2">
-        <span>Apple ID가 없으십니까?</span>
-        <a href="signup.jsp" class="create-link">지금 만드세요!</a>
-    </div>
-
-</section>
-<%@ include file="../modules/footer.jsp"%>
+    </section>
+    <%@ include file="../modules/footer.jsp"%>
 </body>
 </html>

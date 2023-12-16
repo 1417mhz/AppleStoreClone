@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <html>
 <style>
-        /* 대화창 스타일 */
+    /* 대화창 스타일 */
     #chatWindow {
         border: 1px solid #e5e5e5;
         width: 295px;
@@ -35,44 +35,44 @@
         cursor: pointer;
     }
 
-        /* 사용자가 보낸 메시지 스타일 */
-        .myMsg {
-            text-align: right;
-            background-color: #e5e5e5;
-            color: #000;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+    /* 사용자가 보낸 메시지 스타일 */
+    .myMsg {
+        text-align: right;
+        background-color: #e5e5e5;
+        color: #000;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
 
-        /* 상담원이 보낸 메시지 스타일 */
-        .adminMsg {
-            text-align: left;
-            background-color: #808080;
-            color: #fff;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        /* 스크롤바 디자인 변경 */
-        #chatWindow::-webkit-scrollbar {
-            width: 8px;
-        }
+    /* 상담원이 보낸 메시지 스타일 */
+    .adminMsg {
+        text-align: left;
+        background-color: #808080;
+        color: #fff;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    /* 스크롤바 디자인 변경 */
+    #chatWindow::-webkit-scrollbar {
+        width: 8px;
+    }
 
-        #chatWindow::-webkit-scrollbar-track {
-            background-color: #f7f7f7;
-        }
+    #chatWindow::-webkit-scrollbar-track {
+        background-color: #f7f7f7;
+    }
 
-        #chatWindow::-webkit-scrollbar-thumb {
-            background-color: #888;
-            border-radius: 4px;
-        }
+    #chatWindow::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+    }
 
-        #chatWindow::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
-        }
+    #chatWindow::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+    }
 </style>
 <head>
     <title>채팅</title>

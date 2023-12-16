@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java"
-         pageEncoding="UTF-8" import="com.ysw.applestoreclone.sensitiveinfo.SensInfoProvider" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/apple.css">
@@ -26,8 +25,8 @@
 
 <%@ include file="../modules/footer.jsp"%>
 
-<!-- API KEY는 외부 클래스에서 받아옴 -->
-<script type="text/javascript" src=//dapi.kakao.com/v2/maps/sdk.js?appkey=<%=SensInfoProvider.getJsApiKey()%>></script>
+<!-- API KEY는 컨트롤러 클래스에서 받아옴 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${jsApiKey}"></script>
 <script type="text/javascript">
     var lat = "";
     var lon = "";

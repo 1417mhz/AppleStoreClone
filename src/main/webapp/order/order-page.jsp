@@ -32,7 +32,6 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-
         }
         .item-container{
             margin-left: 100px;
