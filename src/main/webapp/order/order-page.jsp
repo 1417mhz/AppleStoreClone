@@ -19,7 +19,7 @@
             font-weight: bold;
         }
         .h3-order{
-            margin-left: 24%;
+            width: 100%;
         }
         .image-section-order {
             display: flex;
@@ -32,10 +32,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            margin-top: 40px;
         }
         .item-container{
-            margin-left: 100px;
-            margin-right: 150px;
+            margin-left: 50px;
         }
 
         .buy-image {
@@ -56,16 +56,16 @@
         hr {
             margin-top: 30px;
             margin-bottom: 30px;
-            margin-left: 300px;
-            margin-right: 300px;
+            width: 820px;
         }
+
         .submit-btn {
             display: inline-block;
             width: 120px; /* 라벨의 너비와 동일 */
-            height: 30px; /* 라벨의 높이와 동일 */
+            height: 38px; /* 라벨의 높이와 동일 */
             line-height: 30px;  /* 라벨의 line-height와 동일, 텍스트를 수직 중앙에 배치 */
-            background-color: #ccc; /* 연한 회색 */
-            color: #fff; /* 텍스트 색상 */
+            background-color: #999999; /* 짙은 회색 */
+            color: white; /* 텍스트 색상 */
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -76,7 +76,6 @@
 
         .submit-btn:hover {
             background-color: #555; /* 진한 회색 */
-            transform: scale(1.1); /* 마우스를 올렸을 때 버튼 크기를 1.1배로 설정 */
         }
         .item-container input[type="radio"] {
             transition: transform 0.3s ease; /* 라디오 버튼 크기가 부드럽게 변하도록 설정 */
@@ -86,8 +85,18 @@
             transform: scale(1.2); /* 마우스를 올렸을 때 라디오 버튼 크기를 1.2배로 설정 */
         }
 
+        .recommend-list-container {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+        }
 
-        /*------------------------------------------------------------- */
+        .recommend-list {
+            width: 820px;
+            display: block;
+            align-items: center;
+            justify-content: center;
+        }
 
         .list-tr img {
             max-width: 100px;
@@ -95,10 +104,10 @@
         }
         .list-table {
             border-collapse: collapse;  /* 테두리 선이 겹치도록 설정 */
-            width: 60%;  /* 테이블 너비를 100%로 설정 */
-            margin: 0 auto;  /* 테이블을 페이지 가운데에 정렬 */
+            width: 100%;  /* 테이블 너비를 100%로 설정 */
+            /*margin: 0 auto;  !* 테이블을 페이지 가운데에 정렬 *!*/
+            font-size: 0.9em;
         }
-
 
         .list-td {
             padding: 8px;  /* 셀 내부의 패딩 설정 */
@@ -114,17 +123,7 @@
         .list-td a img:hover {
             transform: scale(1.1); /* 이미지를 1.1배 확대 */
         }
-        /*---------------------------------------------------------------------*/
 
-
-        /*.buy-image {*/
-        /*    transition: transform 0.3s ease; !* 이미지 크기가 부드럽게 변하도록 설정 *!*/
-        /*}*/
-
-        /*.buy-image:hover {*/
-        /*    transform: scale(1.1); !* 마우스를 올렸을 때 이미지 크기를 1.1배로 설정 *!*/
-        /*}*/
-        /*---------------------상체--------------------*/
         .capacity-selection select {
             width: 200px;
             height: 35px;
@@ -132,13 +131,13 @@
             border: 1px solid #aaa;
             border-radius: 5px;
             background-color: #f0f0f0;
-            font-size: 16px;
+            font-size: 0.9em;
             color: #333;
             outline: none;
         }
 
         .capacity-selection select:focus {
-            border-color: #f35429;
+            border-color: #f0f0f0;
         }
         .color-selection input[type="radio"] {
             display: none;
@@ -173,9 +172,6 @@
         .color-selection input[type="radio"]:checked + label {
             border: 2px solid black;
         }
-
-
-
     </style>
     <script>
         window.onload = function() {
@@ -210,8 +206,8 @@
         <div class="image-container">
             <img class="buy-image"src="${pageContext.request.contextPath}/img/iPhone15Pro_final.png" alt="15 Pro"/>            <div class="item-container">
             <div class="color-selection">
-                <h2 class="h1-order">iPhone 15 Pro 구입하기</h2>
-                <h4 id="color-picking">색상</h4>
+                <h2 class="h1-order">iPhone 15 Pro</h2>
+                <h5 id="color-picking">색상</h5>
                 <input type="radio" id="naturalTitanium" name="color" value="내추럴 티타늄">
                 <label for="naturalTitanium"></label>
                 <input type="radio" id="blueTitanium" name="color" value="블루 티타늄">
@@ -222,7 +218,7 @@
                 <label for="blackTitanium"></label>
             </div>
             <div class="capacity-selection">
-                <h4>저장 용량</h4>
+                <h5>저장 용량</h5>
                 <select name="capacity">
                     <option value="128GB">128GB</option>
                     <option value="256GB">256GB</option>
@@ -240,52 +236,56 @@
     </section>
 </form>
 <hr>
-<h3 class="h3-order">추천 Apple 상품</h3>
-<table class="list-table">
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index < 5}">
-                <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index < 5}">
-                <td class="list-td">${shopDataList.itemTitle}</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index < 5}">
-                <td class="list-td">${shopDataList.itemPrice}원</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <!-- 5번째 이후의 상품 데이터를 넣는 부분 -->
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index >= 5}">
-                <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index >= 5}">
-                <td class="list-td">${shopDataList.itemTitle}</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index >= 5}">
-                <td class="list-td">${shopDataList.itemPrice}원</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-</table>
+<section class="recommend-list-container">
+    <div class="recommend-list">
+        <h3 class="h3-order">추천 악세사리</h3><p style="font-size: 0.7em; font-weight: bold;">by 네이버 쇼핑</p>
+        <table class="list-table">
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index < 5}">
+                        <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index < 5}">
+                        <td class="list-td">${shopDataList.itemTitle}</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index < 5}">
+                        <td class="list-td">${shopDataList.itemPrice}원</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <!-- 5번째 이후의 상품 데이터를 넣는 부분 -->
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index >= 5}">
+                        <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index >= 5}">
+                        <td class="list-td">${shopDataList.itemTitle}</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index >= 5}">
+                        <td class="list-td">${shopDataList.itemPrice}원</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+        </table>
+    </div>
+</section>
 <%@ include file="../modules/footer.jsp" %>
 </body>
 </html>

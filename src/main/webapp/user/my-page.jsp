@@ -15,22 +15,20 @@
         }
         .main-user {
             display: flex; /* Flexbox 사용 */
-            justify-content: space-between; /* 두 요소 사이에 공간 추가 */
-            padding: 0 10%; /* 양쪽에 10%의 패딩을 추가하여 총 너비가 100%가 되도록 함 */
-            height: 100%;
+            justify-content: center;
+            height: 80%;
+            width: 100%;
         }
 
-        .mypage-container{
-            width: 17%; /* 너비를 20%로 설정 */
+        .mypage-container {
+            width: 180px; /* 너비를 20%로 설정 */
             box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
         }
-        .mypage-admin{
-            width: 75%; /* 너비를 40%로 설정 */
-            box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
-        }
-        .admin-table {
-            width: 100%; /* 테이블 너비를 100%로 설정 */
-            border-collapse: collapse; /* 테이블 셀의 테두리를 합치도록 설정 */
+
+        .mypage-admin {
+            box-sizing: border-box;
+            margin-top: 40px;
+            margin-left: 70px;
         }
 
         .admin-table th, .admin-table td {
@@ -58,6 +56,11 @@
             border-bottom: 1px solid #ddd;
         }
 
+        .mypage-menu-t p {
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
         .mypage-menu ul {
             list-style: none;
             padding: 0;
@@ -81,9 +84,8 @@
         .mypage-button {
             width: 100%;
             padding: 10px;
-            /* background-color: #0070c9; */ /* 주석 처리하여 기존 배경색 제거 */
-            background-color: #d3d3d3; /* 버튼 배경색을 연한 회색으로 변경 */
-            color: #fff;
+            background-color: #999999; /* 버튼 배경색을 연한 회색으로 변경 */
+            color: white;
             border: none;
             cursor: pointer;
             margin-bottom: 10px;
@@ -95,15 +97,13 @@
             background-color: #b3b3b3; /* 버튼 호버 시 색상을 보다 어두운 회색으로 변경 */
         }
 
-
-
         .admin-table {
             table-layout: fixed; /* 테이블 레이아웃을 고정 */
-            width: 1000px; /* 테이블 너비를 1000px로 설정, 원하는 값으로 변경 가능 */
+            width: 800px;
             border-collapse: collapse;
             margin: 20px 0;
+            font-size: 0.85em;
         }
-
 
         .admin-table th, .admin-table td {
             text-align: left;
@@ -120,7 +120,31 @@
             background-color: #f2f2f2; /* 짝수 행 배경색 설정 */
         }
 
+        /* 테이블 열 너비 조정 */
+        .admin-table th:nth-child(1) {
+            width: 10%;
+        }
+        .admin-table th:nth-child(2) {
+            width: 25%;
+        }
+        .admin-table th:nth-child(3) {
+            width: 17%;
+        }
+        .admin-table th:nth-child(4) {
+            width: 15%;
+        }
+        .admin-table th:nth-child(5) {
+            width: 15%;
+        }
+        .admin-table th:nth-child(6) {
+            width: 9%;
+        }
+        .admin-table th:nth-child(7) {
+            width: 9%;
+        }
+
         .admin-section-title {
+            width: 800px;
             font-size: 1.5em; /* 제목 크기 설정 */
             font-weight: bold; /* 굵은 폰트 설정 */
             border-bottom: 2px solid #333; /* 제목 밑에 두꺼운 선 추가 */
@@ -150,7 +174,7 @@
         }
     }
     const chatWinOpen = (chatId) => {
-        window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=331,height=438");
+        window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=344, height=463");
     }
 </script>
 <body>
@@ -160,20 +184,19 @@
         <h1 class="mypage-title">마이페이지</h1>
         <div class="mypage-menu-t">
             <ul>
-                <li>${userBean.userEmail}</li>
-                <li>.${userBean.userRole}</li>
-                <li>포인트: ${userBean.userBalance}</li>
-                <li>구매금액: ${userBean.payAmount}</li>
+                <li><p>이메일</p>${userBean.userEmail}</li>
+                <li><p>등급</p>${userBean.userRole}</li>
+                <li><p>잔고</p>${userBean.userBalance}</li>
+                <li><p>구매금액</p>${userBean.payAmount}</li>
             </ul>
         </div>
         <div class="mypage-menu">
             <ul>
-                <li>주문내역</li>
                 <li><a href="${pageContext.request.contextPath}/user/info-update">개인정보 변경</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/pw-change">비밀번호 변경</a></li>
             </ul>
         </div>
-        <button class="mypage-button" type="button" onclick="chatWinOpen('user')">실시간 상담</button><br>
+        <button class="mypage-button" type="button" onclick="chatWinOpen('${sessionScope.userId}')">실시간 상담</button><br>
         <button class="mypage-button" onclick="confirmLeave()" type="button">회원 탈퇴</button><br>
         <c:if test="${not empty sessionScope.isAdmin}">
             <button class="mypage-button" type="button" onclick="location.href='/admin-page'">관리자 페이지</button>
