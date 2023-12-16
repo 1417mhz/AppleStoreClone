@@ -1,14 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/apple.css?after6">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Apple 결제 페이지</title>
     <style>
         .h1-order {
             text-align: center;
             font-family: "Apple SD Gothic Neo", Arial, sans-serif;
+        }
+        .payment-amount {
+            display: block;
+            margin-block-start: 1.33em;
+            margin-block-end: 1.33em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
         }
         .h3-order{
             margin-left: 24%;
@@ -16,6 +24,7 @@
         .image-section-order {
             display: flex;
             align-items: center;
+            justify-content: center; /* 수평 방향으로 가운데 정렬 */
         }
 
         .image-container {
@@ -23,11 +32,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-left: 25%;
         }
         .item-container{
-            margin-left: 50px;
-            margin-right: 200px;
+            margin-left: 100px;
+            margin-right: 150px;
         }
 
         .buy-image {
@@ -197,34 +205,37 @@
 </head>
 <body>
 <%@ include file="../modules/header.jsp" %>
-<h2 class="h1-order">iPhone 15 Pro 구입하기</h2>
 <form action="${pageContext.request.contextPath}/order-proc"  method="post">
     <section class="image-section-order">
         <div class="image-container">
             <img class="buy-image"src="${pageContext.request.contextPath}/img/iPhone15Pro_final.png" alt="15 Pro"/>            <div class="item-container">
-                <div class="color-selection">
-                    <h4 id="color-picking">색상</h4>
-                    <input type="radio" id="naturalTitanium" name="color" value="내추럴 티타늄">
-                    <label for="naturalTitanium"></label>
-                    <input type="radio" id="blueTitanium" name="color" value="블루 티타늄">
-                    <label for="blueTitanium"></label>
-                    <input type="radio" id="whiteTitanium" name="color" value="화이트 티타늄">
-                    <label for="whiteTitanium"></label>
-                    <input type="radio" id="blackTitanium" name="color" value="블랙 티타늄">
-                    <label for="blackTitanium"></label>
-                </div>
-                <div class="capacity-selection">
-                    <h4>저장 용량</h4>
-                    <select name="capacity">
-                        <option value="128GB">128GB</option>
-                        <option value="256GB">256GB</option>
-                        <option value="512GB">512GB</option>
-                        <option value="1TB">1TB</option>
-                    </select>
-                </div>
-                <h4>무료 배송 서비스가 제공됩니다</h4>
-                <input type="submit" value="구매" class="submit-btn">
+            <div class="color-selection">
+                <h2 class="h1-order">iPhone 15 Pro 구입하기</h2>
+                <h4 id="color-picking">색상</h4>
+                <input type="radio" id="naturalTitanium" name="color" value="내추럴 티타늄">
+                <label for="naturalTitanium"></label>
+                <input type="radio" id="blueTitanium" name="color" value="블루 티타늄">
+                <label for="blueTitanium"></label>
+                <input type="radio" id="whiteTitanium" name="color" value="화이트 티타늄">
+                <label for="whiteTitanium"></label>
+                <input type="radio" id="blackTitanium" name="color" value="블랙 티타늄">
+                <label for="blackTitanium"></label>
             </div>
+            <div class="capacity-selection">
+                <h4>저장 용량</h4>
+                <select name="capacity">
+                    <option value="128GB">128GB</option>
+                    <option value="256GB">256GB</option>
+                    <option value="512GB">512GB</option>
+                    <option value="1TB">1TB</option>
+                </select>
+            </div>
+            <div class="payment-amount">
+                <p>결제금액: 1,550,000원</p>
+            </div>
+            <h4>무료 배송 서비스가 제공됩니다</h4>
+            <input type="submit" value="구매" class="submit-btn">
+        </div>
         </div>
     </section>
 </form>

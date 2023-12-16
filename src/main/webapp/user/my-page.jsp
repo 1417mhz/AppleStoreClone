@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after3">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css?after5">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <title>Apple Korea</title>
     <style>
@@ -13,11 +13,11 @@
             background-color: #fff; /* 흰색 배경 */
             color: #333; /* 어두운 텍스트 색상 */
         }
-
         .main-user {
             display: flex; /* Flexbox 사용 */
             justify-content: space-between; /* 두 요소 사이에 공간 추가 */
             padding: 0 10%; /* 양쪽에 10%의 패딩을 추가하여 총 너비가 100%가 되도록 함 */
+            height: 100%;
         }
 
         .mypage-container{
@@ -25,7 +25,7 @@
             box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
         }
         .mypage-admin{
-            width: 65%; /* 너비를 40%로 설정 */
+            width: 75%; /* 너비를 40%로 설정 */
             box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
         }
         .admin-table {
@@ -38,64 +38,72 @@
             padding: 10px; /* 테이블 셀에 패딩 추가 */
             text-align: left; /* 텍스트를 왼쪽으로 정렬 */
         }
-
         .mypage-title {
-            font-size: 2em; /* 제목 크기 */
-            font-weight: bold; /* 굵은 폰트 */
-            border-bottom: 1px solid #333; /* 제목 밑줄 */
-            margin-bottom: 20px; /* 제목과 내용 사이의 간격 */
+            font-size: 2em;
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
         }
 
-        .mypage-menu {
-            margin-bottom: 20px; /* 메뉴 간 간격 */
+        .mypage-menu-t ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1em;
+            color: #666;
+        }
+
+        .mypage-menu-t li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
         }
 
         .mypage-menu ul {
-            list-style: none; /* 리스트 스타일 제거 */
-            padding: 0; /* 리스트 패딩 제거 */
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
         }
 
         .mypage-menu li {
-            margin-bottom: 10px; /* 리스트 아이템 간 간격 */
+            padding: 10px 0;
+            /* border-bottom: 1px solid #ddd; */ /* 주석 처리하여 밑줄 제거 */
         }
 
         .mypage-menu a {
-            color: #0070c9; /* 링크 색상 */
-            text-decoration: none; /* 링크 밑줄 제거 */
+            color: #0070c9;
+            text-decoration: none;
         }
 
         .mypage-menu a:hover {
-            text-decoration: underline; /* 링크에 마우스를 올렸을 때 밑줄 추가 */
+            text-decoration: underline;
         }
 
         .mypage-button {
+            width: 100%;
+            padding: 10px;
+            /* background-color: #0070c9; */ /* 주석 처리하여 기존 배경색 제거 */
             background-color: #d3d3d3; /* 버튼 배경색을 연한 회색으로 변경 */
-            color: #000; /* 버튼 텍스트 색상을 검은색으로 변경 */
-            border: none; /* 버튼 테두리 제거 */
-            padding: 10px 20px; /* 버튼 내부 여백 */
-            margin-bottom: 10px; /* 버튼 간 간격 */
-            cursor: pointer; /* 마우스를 올렸을 때 커서가 손가락 모양으로 바뀌게 설정 */
-            width: 150px; /* 버튼의 너비를 100px로 설정 */
-            height: 40px; /* 버튼의 높이를 40px로 설정 */
-            border-radius: 10px; /* 모서리를 둥글게 만듦 */
-            text-align: center; /* 텍스트를 가운데 정렬 */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            border-radius: 5px;
         }
 
         .mypage-button:hover {
-            background-color: #a9a9a9; /* 마우스를 올렸을 때 버튼 배경색을 진한 회색으로 변경 */
-        }
-
-        .mypage-button:active {
-            background-color: #696969; /* 버튼을 클릭할 때 배경색을 더 진한 회색으로 변경 */
+            /* background-color: #005999; */ /* 주석 처리하여 기존 호버 색상 제거 */
+            background-color: #b3b3b3; /* 버튼 호버 시 색상을 보다 어두운 회색으로 변경 */
         }
 
 
-        /*--------------------------------------------------------------------------*/
+
         .admin-table {
-            width: 100%;
+            table-layout: fixed; /* 테이블 레이아웃을 고정 */
+            width: 1000px; /* 테이블 너비를 1000px로 설정, 원하는 값으로 변경 가능 */
             border-collapse: collapse;
             margin: 20px 0;
         }
+
 
         .admin-table th, .admin-table td {
             text-align: left;
@@ -113,9 +121,11 @@
         }
 
         .admin-section-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 1.5em; /* 제목 크기 설정 */
+            font-weight: bold; /* 굵은 폰트 설정 */
+            border-bottom: 2px solid #333; /* 제목 밑에 두꺼운 선 추가 */
+            padding-bottom: 10px; /* 제목과 선 사이의 간격 설정 */
+            margin-bottom: 20px; /* 제목과 테이블 사이의 간격 설정 */
         }
 
         .admin-action-button {
@@ -127,7 +137,6 @@
             font-size: 14px;
             cursor: pointer;
         }
-
 
     </style>
 </head>
@@ -149,16 +158,17 @@
 <section class="main-user">
     <div class="mypage-container">
         <h1 class="mypage-title">마이페이지</h1>
-        <div class="mypage-menu">
+        <div class="mypage-menu-t">
             <ul>
                 <li>${userBean.userEmail}</li>
-                <li>등급 - ${userBean.userRole}</li>
-                <li>잔고 - ${userBean.userBalance}</li>
-                <li>구매금액 - ${userBean.payAmount}</li>
+                <li>.${userBean.userRole}</li>
+                <li>포인트: ${userBean.userBalance}</li>
+                <li>구매금액: ${userBean.payAmount}</li>
             </ul>
         </div>
         <div class="mypage-menu">
             <ul>
+                <li>주문내역</li>
                 <li><a href="${pageContext.request.contextPath}/user/info-update">개인정보 변경</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/pw-change">비밀번호 변경</a></li>
             </ul>
