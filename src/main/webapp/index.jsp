@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/apple.css?after4">
+  <link rel="stylesheet" type="text/css" href="css/apple.css?after20">
   <title>Apple Korea</title>
 </head>
 <style>
@@ -26,8 +26,9 @@
     });
   });
 </script>
-<body style="overflow-x: hidden">
 <%@ include file="modules/header.jsp"%>
+<body class="main-body">
+
 <section class="main1">
   <div class="main1_store">
     <h1 class="t1">스토어.최고의 연말연시. 설렘의 시작.</h1>
@@ -81,17 +82,25 @@
   <div class="item1">
     <ul>
       <li><img width="200" height="130" alt=""
-               src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airpods-nav-202209?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1660676485885"
-               srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airpods-nav-202209?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1660676485885, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airpods-nav-202209?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1660676485885 2x"></li>
+               src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airtags-nav-202108?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1625783380000"
+               srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airtags-nav-202108?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1625783380000, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airtags-nav-202108?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1625783380000 2x"></li>
       <li class="subject">AirTag</li>
     </ul>
   </div>
   <div class="item1">
     <ul>
       <li><img width="200" height="130" alt=""
-               src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airtags-nav-202108?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1625783380000"
-               srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airtags-nav-202108?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1625783380000, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-airtags-nav-202108?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1625783380000 2x"></li>
+               src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-appletv-nav-202210?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1664628458484"
+               srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-appletv-nav-202210?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1664628458484, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-appletv-nav-202210?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1664628458484 2x">
       <li class="subject">AppleTV 4K</li>
+    </ul>
+  </div>
+  <div class="item1">
+    <ul>
+      <li><img width="200" height="130" alt=""
+               src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-accessories-nav-202309?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1692803114952"
+               srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-accessories-nav-202309?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1692803114952, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-accessories-nav-202309?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1692803114952 2x">
+      <li class="subject">액세서리</li>
     </ul>
   </div>
 </section>

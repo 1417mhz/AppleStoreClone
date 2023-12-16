@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Apple Store</title>
-    <link rel="stylesheet" type="text/css" href="css/apple.css?after1">
+    <link rel="stylesheet" type="text/css" href="css/apple.css?after10">
 </head>
 <script>
     const confirmLogout = (type) => {
@@ -19,7 +19,7 @@
         }
     }
 </script>
-<body style="overflow-x: hidden">
+<body>
 <header>
     <div class="container">
         <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/img/logo2.png" alt="로고" style="width: 30px; height: 30px;"></a>

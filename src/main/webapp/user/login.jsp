@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after6">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css?after10">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <title>로그인</title>
     <style>
         /*--- 로그인 --- */
         .login-body{
-            font-family: 'Roboto', sans-serif; /* 폰트 설정 */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: space-between; /* 두 요소 사이에 공간 추가 */
+
+            height: 100%;
         }
 
         .t1-login{
@@ -31,7 +36,7 @@
             padding: 20px;
             border: none; /* 테두리 없애기 */
             border-radius: 5px;
-
+            margin-bottom: 100px;
         }
         .login-t1 {
             font-weight: bold; /* 텍스트를 진하게 */
