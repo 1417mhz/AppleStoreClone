@@ -4,8 +4,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../img/logo2.png">
     <link rel="stylesheet" type="text/css" href="../css/apple.css?after4">
-    <title>Apple Korea</title>
+    <title>비밀번호 변경</title>
 </head>
 <script>
     const compareAndSubmit = () => {

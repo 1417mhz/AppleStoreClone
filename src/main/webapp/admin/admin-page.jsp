@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="../css/apple.css?after9">
-  <title>Apple Korea</title>
+  <title>관리자 페이지</title>
   <style>
     /*-----관리자 페이지 ------*/
     .admin-btn {

@@ -2,9 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="../img/logo2.png">
     <link rel="stylesheet" type="text/css" href="../css/apple.css?after5">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <title>Apple Korea</title>
+    <title>Apple Store - ${sessionScope.userId}</title>
     <style>
 
         /*--------------------------------------------------------------------------*/

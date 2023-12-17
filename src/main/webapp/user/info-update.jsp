@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/apple.css?after3">
-<title>Apple Korea</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="../img/logo2.png">
+  <link rel="stylesheet" type="text/css" href="../css/apple.css?after3">
+  <title>개인정보 변경</title>
 </head>
 <script>
   const updateConfirm = () => {

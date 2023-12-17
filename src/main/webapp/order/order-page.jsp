@@ -2,9 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="../img/logo2.png">
     <link rel="stylesheet" type="text/css" href="../css/apple.css?after6">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <title>Apple 결제 페이지</title>
+    <title>Apple Store - iPhone 15 Pro</title>
     <style>
         .h1-order {
             text-align: center;
@@ -125,8 +126,8 @@
         }
 
         .capacity-selection select {
-            width: 200px;
-            height: 35px;
+            width: 160px;
+            height: 40px;
             padding: 5px;
             border: 1px solid #aaa;
             border-radius: 5px;
@@ -134,6 +135,7 @@
             font-size: 0.9em;
             color: #333;
             outline: none;
+            text-align: center;
         }
 
         .capacity-selection select:focus {

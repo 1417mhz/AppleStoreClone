@@ -2,10 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
-    <title>Apple Store</title>
     <link rel="stylesheet" type="text/css" href="css/apple.css?after10">
 </head>
 <script>
