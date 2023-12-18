@@ -14,7 +14,6 @@
       min-height: 100vh;
       margin-top: 10%;
     }
-
     .form-group {
       margin-bottom: 20px;
     }
