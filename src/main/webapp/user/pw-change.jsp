@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/apple.css?after4">
     <title>Apple Korea</title>
+    <%@ include file="../modules/header.jsp"%>
 </head>
 <script>
     const compareAndSubmit = () => {
@@ -22,7 +23,6 @@
     };
 </script>
 <body>
-<%@ include file="../modules/header.jsp"%>
 <div class="password-change-container">
     <h1 class="password-change-title">비밀번호 수정</h1>
     <form action="${pageContext.request.contextPath}/user/pw-change-proc" class="password-change-form" method="post" id="submitForm">
