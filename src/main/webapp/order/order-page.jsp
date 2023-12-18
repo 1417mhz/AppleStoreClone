@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="icon" type="image/png" href="../img/logo2.png">
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after6">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Apple Store - iPhone 15 Pro</title>
     <style>
@@ -126,8 +126,8 @@
         }
 
         .capacity-selection select {
-            width: 160px;
-            height: 40px;
+            width: 120px;
+            height: 30px;
             padding: 5px;
             border: 1px solid #aaa;
             border-radius: 5px;
@@ -147,8 +147,8 @@
 
         .color-selection label {
             display: inline-block;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             margin-right: 10px;
             border-radius: 50%;
             border: 2px solid #ddd;
@@ -177,19 +177,46 @@
     </style>
     <script>
         window.onload = function() {
-            var tds = document.querySelectorAll('.list-td');  // 'list-td' 클래스를 가진 모든 요소를 선택
+            // 페이지 로드 시 기본 결제 금액 설정
+            updatePaymentAmount();
 
+            const capacitySelection = document.querySelector('.capacity-selection select');
+            capacitySelection.addEventListener('change', function() {
+                // 저장 용량이 변경될 때마다 결제 금액 업데이트
+                updatePaymentAmount();
+            });
+
+            const tds = document.querySelectorAll('.list-td');  // 'list-td' 클래스를 가진 모든 요소를 선택
             tds.forEach(function(td) {
-                var title = td.innerText;  // 각 요소의 텍스트를 가져옴
+                const title = td.innerText;  // 각 요소의 텍스트를 가져옴
                 if (title.length > 10) {  // 텍스트가 20자를 초과하면
                     td.innerText = title.substring(0, 10) + "...";  // 처음 20자만 남기고 나머지는 '...'로 대체
                 }
             });
         };
 
+        function updatePaymentAmount() {
+            const capacitySelection = document.querySelector('.capacity-selection select');
+            const paymentAmount = document.querySelector('.payment-amount p');
+
+            const selectedCapacity = capacitySelection.value;
+
+            const priceMap = {
+                '128GB': "1,550,000",
+                '256GB': "1,700,000",
+                '512GB': "2,000,000",
+                '1TB': "2,300,000"
+            };
+
+            if (priceMap.hasOwnProperty(selectedCapacity)) {
+                const price = priceMap[selectedCapacity];
+                paymentAmount.textContent = '결제금액: ' + price.toLocaleString() + '원';
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
-            var colorSelection = document.querySelector('.color-selection');
-            var h4Element = document.getElementById('color-picking');
+            const colorSelection = document.querySelector('.color-selection');
+            const h4Element = document.getElementById('color-picking');
 
             colorSelection.addEventListener('click', function (event) {
                 if (event.target.type === 'radio') {
@@ -198,25 +225,55 @@
                 }
             });
         });
+
+        const confirmPurchase = (isLogin) => {
+            if (isLogin != null) {
+                if (confirm('정말 결제하시겠습니까?')) {
+                    validPurchase();
+                }
+            } else {
+                alert('로그인 후 이용해주세요.');
+                window.location.href = '/user/login';
+            }
+        }
+
+        const validPurchase = () => {
+            const radios = document.getElementsByClassName('color-options');
+            let formValid = false;
+
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    formValid = true;
+                    break;
+                }
+            }
+            if (!formValid) {
+                alert('색상을 선택해주세요.');
+            } else {
+                const form = document.getElementById('submitForm');
+                form.submit();
+            }
+        }
+
     </script>
 
 </head>
 <body>
 <%@ include file="../modules/header.jsp" %>
-<form action="${pageContext.request.contextPath}/order-proc"  method="post">
+<form action="${pageContext.request.contextPath}/order-proc"  method="post" id="submitForm">
     <section class="image-section-order">
         <div class="image-container">
             <img class="buy-image"src="${pageContext.request.contextPath}/img/iPhone15Pro_final.png" alt="15 Pro"/>            <div class="item-container">
             <div class="color-selection">
                 <h2 class="h1-order">iPhone 15 Pro</h2>
                 <h5 id="color-picking">색상</h5>
-                <input type="radio" id="naturalTitanium" name="color" value="내추럴 티타늄">
+                <input type="radio" class="color-options" id="naturalTitanium" name="color" value="내추럴 티타늄">
                 <label for="naturalTitanium"></label>
-                <input type="radio" id="blueTitanium" name="color" value="블루 티타늄">
+                <input type="radio" class="color-options" id="blueTitanium" name="color" value="블루 티타늄">
                 <label for="blueTitanium"></label>
-                <input type="radio" id="whiteTitanium" name="color" value="화이트 티타늄">
+                <input type="radio" class="color-options" id="whiteTitanium" name="color" value="화이트 티타늄">
                 <label for="whiteTitanium"></label>
-                <input type="radio" id="blackTitanium" name="color" value="블랙 티타늄">
+                <input type="radio" class="color-options" id="blackTitanium" name="color" value="블랙 티타늄">
                 <label for="blackTitanium"></label>
             </div>
             <div class="capacity-selection">
@@ -231,8 +288,9 @@
             <div class="payment-amount">
                 <p>결제금액: 1,550,000원</p>
             </div>
-            <h4>무료 배송 서비스가 제공됩니다</h4>
-            <input type="submit" value="구매" class="submit-btn">
+            <h4>회원 등급에 따라 할인이 적용됩니다</h4>
+            <button type="button" class="submit-btn" onclick="confirmPurchase(${sessionScope.isLogin})">구매</button>
+<%--            <input onclick="confirmPurchase(${sessionScope.isLogin})" value="구매" class="submit-btn">--%>
         </div>
         </div>
     </section>
