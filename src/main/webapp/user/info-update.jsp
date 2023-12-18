@@ -4,10 +4,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/apple.css?after3">
+<link rel="stylesheet" type="text/css" href="../css/apple.css?after10">
 <title>Apple Korea</title>
+  <style>
+    .form-container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      min-height: 100vh;
+      margin-top: 10%;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group button {
+      padding: 12px 44px; /* 버튼 크기 조정 */
+      background-color: #999; /* 버튼 색상을 회색으로 변경 */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body style="overflow-x: hidden">
+<body>
   <%@ include file="../modules/header.jsp"%>
   <div class="form-container">
     <h1>개인정보 변경</h1>
