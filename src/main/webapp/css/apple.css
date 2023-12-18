@@ -306,60 +306,7 @@ section nav ul li {
 
 /* ---마이페이지---*/
 /* ---비밀번호 변경---*/
-.password-change-container {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-}
 
-.password-change-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.password-change-form {
-    margin-bottom: 20px;
-}
-
-.password-change-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.password-change-form input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.password-change-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.password-change-button {
-    flex: 1;
-    margin-right: 10px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.password-change-button {
-    background-color: #999999;
-    width: 150px; /* 버튼의 가로 크기를 조절하세요 */
-    height: 40px; /* 버튼의 세로 크기를 조절하세요 */
-    display: inline-block;
-    margin-right: 30px; /* 버튼 사이의 간격을 조절하세요 */
-    margin-top: 20px; /* 원하는 상단 여백 크기를 조절하세요 */
-}
 /* ---비밀번호 변경---*/
 /*--- 관리자 ---*/
 .admin-container {
@@ -420,37 +367,7 @@ section nav ul li {
 }
 /*--- 관리자 ---*/
 /*----개인정보 변경----*/
-.form-container {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-}
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form-group button {
-    padding: 12px 44px; /* 버튼 크기 조정 */
-    background-color: #999; /* 버튼 색상을 회색으로 변경 */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 /*----개인정보 변경----*/
 /*----구매페이지---*/
 
