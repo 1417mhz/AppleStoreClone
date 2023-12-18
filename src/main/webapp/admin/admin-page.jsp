@@ -5,22 +5,20 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="../css/apple.css?after9">
+  <link rel="stylesheet" type="text/css" href="../css/apple.css">
   <title>관리자 페이지</title>
   <style>
     /*-----관리자 페이지 ------*/
     .admin-btn {
-      background-color: #D3D3D3; /* 버튼의 배경 색깔을 연한 회색으로 설정 */
-      border: none; /* 버튼의 테두리를 제거 */
-      display: flex; /* Flexbox 사용 */
-      justify-content: center; /* 가로 중앙 정렬 */
-      align-items: center; /* 세로 중앙 정렬 */
-      font-size: 16px; /* 폰트 크기 */
-      margin: 0px 2px; /* 위아래 간격을 10px로 설정 */
-      cursor: pointer; /* 마우스 포인터 */
-      border-radius: 12px; /* 버튼 모서리 둥글게 */
-      width: 160px; /* 버튼의 폭을 늘림 */
-      height: 18px; /* 버튼의 높이를 늘림 */
+      background-color: #999999;
+      color: white;
+      border: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 160px;
+      height: 38px;
+      padding: 10px;
     }
 
     .admin-btn:active {

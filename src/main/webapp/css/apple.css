@@ -15,6 +15,9 @@ body {
     min-height: 100vh;
     margin: 0; /* body의 마진을 제거합니다. */
 }
+body button {
+    font-weight: bold;
+}
 /* ---header ---*/
 .top_menu ul li a {
     /*transition: font-size 0.3s ease; !* 폰트 크기가 부드럽게 변하도록 설정 *!*/
@@ -65,7 +68,7 @@ footer #footer_address {
 .subject {
     font-family: "Roboto", Arial, sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     justify-content: center; /* 가로로 가운데 정렬 */
     align-items: center; /* 세로로 가운데 정렬 */
@@ -161,6 +164,8 @@ section.main1-ss {
     text-align: center;
     background-color: #f5f5f7; /* 연한 회색 배경색으로 설정 */
     padding-top: 20px;
+    padding-left: 50%;
+    padding-right: 50%;
 }
 
 .main5 {
@@ -179,6 +184,7 @@ section nav ul li {
 .item1 li {
     list-style-type: none; /* 점 제거 */
     font-weight: bold;  /* 진한 글씨*/
+    margin-top: 10px;
 }
 .item1 img {
     width: 100px; /* 이미지 가로 크기 설정 */

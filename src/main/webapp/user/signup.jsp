@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="icon" type="image/png" href="../img/logo2.png">
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after2">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css">
     <title>Apple Store - 회원가입</title>
 </head>
 <style>

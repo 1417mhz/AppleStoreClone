@@ -3,17 +3,10 @@
 <html>
 <head>
     <link rel="icon" type="image/png" href="../img/logo2.png">
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after5">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css">
+<%--    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">--%>
     <title>Apple Store - ${sessionScope.userId}</title>
     <style>
-
-        /*--------------------------------------------------------------------------*/
-        body {
-            font-family: 'San Francisco', 'Helvetica Neue', Arial, sans-serif; /* 애플 사이트에서 사용하는 폰트 */
-            background-color: #fff; /* 흰색 배경 */
-            color: #333; /* 어두운 텍스트 색상 */
-        }
         .main-user {
             display: flex; /* Flexbox 사용 */
             justify-content: center;
@@ -194,7 +187,9 @@
         <div class="mypage-menu">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/user/info-update">개인정보 변경</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/pw-change">비밀번호 변경</a></li>
+                <c:if test="${sessionScope.loginType eq 'email'}">
+                    <li><a href="${pageContext.request.contextPath}/user/pw-change">비밀번호 변경</a></li>
+                </c:if>
             </ul>
         </div>
         <button class="mypage-button" type="button" onclick="chatWinOpen('${sessionScope.userId}')">실시간 상담</button><br>

@@ -5,12 +5,16 @@
 <head>
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="img/logo2.png">
-  <link rel="stylesheet" type="text/css" href="css/apple.css?after20">
+  <link rel="stylesheet" type="text/css" href="css/apple.css">
   <title>Apple Store</title>
 </head>
 <style>
   html {
     scroll-behavior: smooth;
+  }
+  .item1 ul {
+    padding-left: 17px;
+    padding-right: 17px;
   }
 </style>
 <script>
@@ -53,7 +57,7 @@
       <li><img width="200" height="130" alt="ipad"
                src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-ipad-nav-202210?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1664912135437"
                srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-ipad-nav-202210?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1664912135437, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-ipad-nav-202210?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1664912135437 2x"></li>
-      <li class="subject">iPad Pro</li>
+      <li class="subject">iPad</li>
     </ul>
   </div>
   <div class="item1">
@@ -61,7 +65,7 @@
       <li><img width="200" height="130" alt="watch"
                src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-watch-nav-202309_GEO_KR?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1693703814022"
                srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-watch-nav-202309_GEO_KR?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1693703814022, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-watch-nav-202309_GEO_KR?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1693703814022 2x"></li>
-      <li class="subject">Watch9</li>
+      <li class="subject">Watch</li>
     </ul>
   </div>
   <div class="item1">
@@ -93,7 +97,7 @@
       <li><img width="200" height="130" alt=""
                src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-appletv-nav-202210?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1664628458484"
                srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-appletv-nav-202210?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1664628458484, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-appletv-nav-202210?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1664628458484 2x">
-      <li class="subject">AppleTV 4K</li>
+      <li class="subject">AppleTV</li>
     </ul>
   </div>
   <div class="item1">
@@ -101,7 +105,7 @@
       <li><img width="200" height="130" alt=""
                src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-accessories-nav-202309?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1692803114952"
                srcset="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-accessories-nav-202309?wid=200&amp;hei=130&amp;fmt=png-alpha&amp;.v=1692803114952, https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/store-card-13-accessories-nav-202309?wid=400&amp;hei=260&amp;fmt=png-alpha&amp;.v=1692803114952 2x">
-      <li class="subject">액세서리</li>
+      <li class="subject">악세서리</li>
     </ul>
   </div>
 </section>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="icon" type="image/png" href="../img/logo2.png">
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after10">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <title>Apple Store - 로그인</title>
     <style>
@@ -77,19 +77,16 @@
 
         .button-group1 .login-btn1,
         .button-group1 .login-btn2 {
-            background-color: #999999; /* 버튼의 배경색을 회색으로 지정합니다. */
-            color: white; /* 버튼의 텍스트 색상을 흰색으로 지정합니다. */
-            padding: 10px 80px; /* 버튼의 내부 여백을 조정합니다. */
-            border: none; /* 버튼의 테두리를 제거합니다. */
-            cursor: pointer; /* 마우스를 올리면 커서 모양이 포인터로 변경됩니다. */
-            border-radius: 5px; /* 버튼의 모서리를 5px만큼 둥글게 설정합니다. */
+            background-color: #999999;
+            color: white;
+            width: 195px;
+            height: 38px;
+            border: 0;
+            cursor: pointer;
+            border-radius: 5px;
             font-size: 13px;
+            font-weight: bold;
             margin-top: 5px;
-        }
-
-        .button-group1 .login-btn1,
-        .button-group1 .login-btn2:hover {
-            background-color: darkgray; /* 마우스를 올렸을 때 버튼의 배경색을 어둡게 변경합니다. */
         }
 
         .button-group3 {
