@@ -253,8 +253,7 @@ section nav ul li {
 
 .signup-form {
     width: 400px;
-    margin: 10% auto auto;
-    padding: 20px;
+    margin: 200px auto auto;
     border-radius: 5px;
 }
 
@@ -307,13 +306,6 @@ section nav ul li {
     justify-content: space-between;
 }
 
-/* ---회원가입  ---*/
-/* ---마이페이지---*/
-
-/* ---마이페이지---*/
-/* ---비밀번호 변경---*/
-
-/* ---비밀번호 변경---*/
 /*--- 관리자 ---*/
 .admin-container {
     width: 800px;
@@ -371,13 +363,8 @@ section nav ul li {
 .admin-action-button.delete {
     background-color: #f44336;
 }
+
 /*--- 관리자 ---*/
-/*----개인정보 변경----*/
-
-/*----개인정보 변경----*/
-/*----구매페이지---*/
-
-/*----구매페이지----*/
 /*-----회원목록 ------*/
 .Admin-table {
     width: 100%;
@@ -402,7 +389,3 @@ section nav ul li {
 .Admin-tr:hover {
     background-color: #e5e5e5;
 }
-
-
-
-/*-----회원목록 ------*/
