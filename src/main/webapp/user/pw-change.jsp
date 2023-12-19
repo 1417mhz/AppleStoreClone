@@ -4,53 +4,48 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after4">
-    <title>Apple Korea</title>
-    <%@ include file="../modules/header.jsp"%>
-    <style>
-        .password-change-container {
-            width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            margin-top: 10%;
-        }
-
-        .password-change-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .password-change-form {
-            margin-bottom: 20px;
-        }
-
-        .password-change-form label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .password-change-form input[type="password"] {
-            width: 95%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-bottom: 5px;
-        }
-
-        .password-change-button {
-            background-color: #999999;
-            color: white;
-            padding: 10px 85px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="../img/logo2.png">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css">
+    <title>비밀번호 변경</title>
 </head>
+<style>
+    .password-change-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        min-height: 100vh;
+        margin-top: 10%;
+    }
+    .password-change-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .password-change-form {
+        margin-bottom: 20px;
+    }
+    .password-change-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .password-change-form input[type="password"] {
+        width: 95%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 5px;
+    }
+    .password-change-button {
+        background-color: #999999;
+        color: white;
+        padding: 10px 85px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+</style>
 <script>
     const compareAndSubmit = () => {
         const newPw = document.getElementById('new-password').value;
@@ -65,8 +60,8 @@
         }
     };
 </script>
-
 <body>
+<%@ include file="../modules/header.jsp"%>
 <div class="password-change-container">
     <h1 class="password-change-title">비밀번호 수정</h1>
     <form action="${pageContext.request.contextPath}/user/pw-change-proc" class="password-change-form" method="post" id="submitForm">

@@ -5,24 +5,20 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="../css/apple.css?after9">
-  <title>Apple Korea</title>
+  <link rel="stylesheet" type="text/css" href="../css/apple.css">
+  <title>관리자 페이지</title>
   <style>
     /*-----관리자 페이지 ------*/
     .admin-btn {
-      background-color: #D3D3D3; /* 버튼의 배경 색깔을 연한 회색으로 설정 */
-      border: none; /* 버튼의 테두리를 제거 */
-      display: flex; /* Flexbox 사용 */
-      justify-content: center; /* 가로 중앙 정렬 */
-      align-items: center; /* 세로 중앙 정렬 */
-      font-size: 16px; /* 폰트 크기 */
-      margin: 0px 2px; /* 위아래 간격을 10px로 설정 */
-      cursor: pointer; /* 마우스 포인터 */
-      border-radius: 12px; /* 버튼 모서리 둥글게 */
-      width: 150px; /* 버튼의 폭을 늘림 */
-      height: 45px; /* 버튼의 높이를 늘림 */
-      cursor: pointer; /* 마우스를 올렸을 때 커서가 손가락 모양으로 바뀌게 설정 */
-      transition: all 0.3s ease; /* 버튼의 색상과 크기가 부드럽게 변하게 설정 */
+      background-color: #999999;
+      color: white;
+      border: none;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 160px;
+      height: 38px;
+      padding: 10px;
     }
 
     .admin-btn:active {
@@ -80,7 +76,7 @@
 </head>
 <script>
   const chatWinOpen = (chatId) => {
-    window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=331,height=438");
+    window.open("../chatclient/ChatWindow.jsp?chatId=" + chatId, "", "width=344, height=463");
   }
   const ifNotAdmin = () => {
     alert('접근 실패! 권한을 확인하세요.');
@@ -105,6 +101,9 @@
 
 <div class="admin-container">
   <h1 class="admin-title">관리자 페이지</h1> <!-- 회원 관리 섹션 -->
+  <div class="admin-section">
+    <button class="admin-btn" type="button" onclick="chatWinOpen('admin')">실시간 상담 입장</button>
+  </div>
   <div class="admin-section">
     <h2 class="admin-section-title">회원 관리</h2>
     <table class="admin-table">
@@ -191,9 +190,6 @@
       </c:forEach>
       </tbody>
     </table>
-  </div>
-  <div class="admin-section">
-    <button class="admin-btn" type="button" onclick="chatWinOpen('admin')">실시간 상담 입장</button>
   </div>
 </div>
 <%@ include file="../modules/footer.jsp"%>

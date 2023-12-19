@@ -14,21 +14,40 @@ public class OrderService {
     UserService userService = new UserService();
 
     public void createNewOrder(OrderBean orderBean) throws SQLException {
+        // 선택 된 용량에 따라 정가 설정
+        switch (orderBean.getOrderCapacity()) {
+            case "128GB":
+                orderBean.setOriginPrice(1550000);
+                break;
+            case "256GB":
+                orderBean.setOriginPrice(1700000);
+                break;
+            case "512GB":
+                orderBean.setOriginPrice(2000000);
+                break;
+            case "1TB":
+                orderBean.setOriginPrice(2300000);
+                break;
+        }
         double discountRate = getDiscountRate(orderBean.getBuyer());
         orderBean.setOrderPrice(getDiscountPrice(orderBean.getOriginPrice(), discountRate));
 
         Connection conn = DBConn.getDBConn();
         conn.setAutoCommit(false);
-        String orderQuery = "INSERT INTO product_order(product_title, order_price, origin_price, buyer) values(?, ?, ?, ?)";
+        String orderQuery = "INSERT INTO product_order(" +
+                            "product_title, order_capacity, order_color, order_price, origin_price, buyer) " +
+                            "values(?, ?, ?, ?, ?, ?)";
         String updateQuery = "UPDATE user SET user_balance = user_balance - ?, pay_amount = pay_amount + ? WHERE user_id = ?";
         try (
                 PreparedStatement pstmtOrder = conn.prepareStatement(orderQuery);
                 PreparedStatement pstmtUpdate = conn.prepareStatement(updateQuery);
         ) {
             pstmtOrder.setString(1, orderBean.getProductTitle());
-            pstmtOrder.setInt(2, orderBean.getOrderPrice());
-            pstmtOrder.setInt(3, orderBean.getOriginPrice());
-            pstmtOrder.setString(4, orderBean.getBuyer());
+            pstmtOrder.setString(2, orderBean.getOrderCapacity());
+            pstmtOrder.setString(3, orderBean.getOrderColor());
+            pstmtOrder.setInt(4, orderBean.getOrderPrice());
+            pstmtOrder.setInt(5, orderBean.getOriginPrice());
+            pstmtOrder.setString(6, orderBean.getBuyer());
             pstmtOrder.executeUpdate();
 
             pstmtUpdate.setInt(1, orderBean.getOrderPrice());
@@ -41,6 +60,7 @@ public class OrderService {
             System.out.println("** 결제 성공 **");
         } catch (SQLException e) {
             conn.rollback();
+            throw new RuntimeException(e);
         } finally {
             conn.setAutoCommit(true);
             conn.close();

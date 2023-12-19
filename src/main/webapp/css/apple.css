@@ -8,10 +8,15 @@ a:link, a:visited, a:hover, a:active {color:#333;}
     justify-content: center;
 }
 body {
+    font-family: 'San Francisco', 'Helvetica Neue', Arial, sans-serif; /* 애플 사이트에서 사용하는 폰트 */
+    color: #333; /* 어두운 텍스트 색상 */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     margin: 0; /* body의 마진을 제거합니다. */
+}
+body button {
+    font-weight: bold;
 }
 /* ---header ---*/
 .top_menu ul li a {
@@ -63,7 +68,7 @@ footer #footer_address {
 .subject {
     font-family: "Roboto", Arial, sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     justify-content: center; /* 가로로 가운데 정렬 */
     align-items: center; /* 세로로 가운데 정렬 */
@@ -83,9 +88,6 @@ section.main1-ss {
     height: 70px; /* 높이를 100px로 설정 */
 }
 .main-body  {
-
-}
-.main1{
 
 }
 
@@ -141,12 +143,13 @@ section.main1-ss {
 
 }
 .t5{
-    font-size: 18px;
+    font-size: 1.5em;
     display: flex;
-    font-weight: bold;  /* 진한 글씨*/
-    margin-bottom: 20px; /* 하단 여백의 크기를 조정하세요 */
-    margin-top: 30px; /* 상단 여백의 크기를 조정하세요 */
-    justify-content: center; /* 가로로 가운데 정렬 */
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    justify-content: flex-start;
+    width: 990px;
 }
 
 
@@ -160,6 +163,9 @@ section.main1-ss {
     align-items: center;
     text-align: center;
     background-color: #f5f5f7; /* 연한 회색 배경색으로 설정 */
+    padding-top: 20px;
+    padding-left: 50%;
+    padding-right: 50%;
 }
 
 .main5 {
@@ -178,6 +184,7 @@ section nav ul li {
 .item1 li {
     list-style-type: none; /* 점 제거 */
     font-weight: bold;  /* 진한 글씨*/
+    margin-top: 10px;
 }
 .item1 img {
     width: 100px; /* 이미지 가로 크기 설정 */
@@ -246,10 +253,9 @@ section nav ul li {
 
 .signup-form {
     width: 400px;
-    margin: 50px auto;
+    margin: 10% auto auto;
     padding: 20px;
     border-radius: 5px;
-
 }
 
 .signup-form h1, .signup-form h3 {

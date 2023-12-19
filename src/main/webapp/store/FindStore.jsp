@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="../img/logo2.png">
     <link rel="stylesheet" type="text/css" href="../css/apple.css">
-    <title>오프라인 스토어 검색</title>
+    <title>Apple Store - 스토어 검색</title>
 </head>
 <style>
     .map-div {
@@ -10,19 +11,23 @@
         height: 800px;
         margin: 0;
     }
+    .section-container {
+        margin-bottom: 40px;
+    }
 </style>
 <body>
 <%@ include file="../modules/header.jsp"%>
-<section class="main5">
-    <div>
-        <h2>오프라인 스토어 찾기</h2>
-    </div>
-</section>
-<section class="main5">
-    <!-- 지도가 표시될 곳 -->
-    <div id="map" class="map-div"></div>
-</section>
-
+<div class="section-container">
+    <section class="main5" style="background-color: white;">
+        <div>
+            <h2>오프라인 스토어 찾기</h2>
+        </div>
+    </section>
+    <section class="main5" style="background-color: white;">
+        <!-- 지도가 표시될 곳 -->
+        <div id="map" class="map-div"></div>
+    </section>
+</div>
 <%@ include file="../modules/footer.jsp"%>
 
 <!-- API KEY는 컨트롤러 클래스에서 받아옴 -->

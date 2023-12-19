@@ -2,30 +2,39 @@
          pageEncoding="UTF-8"%>
 <html>
 <style>
+    body {
+        margin: 7px;
+        width: 330px;
+        height: 445px;
+    }
+
     /* 대화창 스타일 */
     #chatWindow {
         border: 1px solid #e5e5e5;
-        width: 295px;
-        height: 350px;
+        width: 100%;
+        height: 92%;
         overflow-y: scroll;
-        padding: 10px;
         background-color: #f7f7f7;
         margin-bottom: 5px;
     }
 
+    #inputSection {
+        height: 8%;
+        display: flex;
+    }
+
     /* 메시지 입력창 스타일 */
     #chatMessage {
-
         border: 1px solid #e5e5e5;
         border-radius: 4px;
         padding: 5px;
         margin-right: 5px;
         font-size: 14px;
+        width: 70%;
     }
 
     /* 전송 버튼 스타일 */
     #sendBtn {
-        height: 40px;
         padding: 0 15px;
         border: none;
         border-radius: 4px;
@@ -33,6 +42,7 @@
         color: #fff;
         font-size: 14px;
         cursor: pointer;
+        width: 30%;
     }
 
     /* 사용자가 보낸 메시지 스타일 */
@@ -44,10 +54,11 @@
         margin-bottom: 10px;
         border-radius: 4px;
         font-size: 14px;
+        margin-left: 8px;
     }
 
     /* 상담원이 보낸 메시지 스타일 */
-    .adminMsg {
+    .otherMsg {
         text-align: left;
         background-color: #808080;
         color: #fff;
@@ -55,6 +66,7 @@
         margin-bottom: 10px;
         border-radius: 4px;
         font-size: 14px;
+        margin-left: 8px;
     }
     /* 스크롤바 디자인 변경 */
     #chatWindow::-webkit-scrollbar {
@@ -87,6 +99,10 @@
         }
         // 메시지 전송
         function sendMessage() {
+            // 입력 된 문자 없이 전송을 누를 경우 반영하지 않음
+            if (chatMessage.value === "") {
+                return 0;
+            }
             // 대화창에 표시
             chatWindow.innerHTML += "<div class='myMsg'>" + chatMessage.value + "</div>"
             webSocket.send(chatId + '|' + chatMessage.value);  // 서버로 전송
@@ -135,30 +151,18 @@
                     }
                 }
                 else {  // 일반 대화
-                    if (sender === 'admin') {  // 상담원이 보낸 메시지
-                        chatWindow.innerHTML += "<div class='adminMsg'>" + sender + " : " + content + "</div>";
-                    } else {  // 사용자가 보낸 메시지
-                        chatWindow.innerHTML += "<div>" + sender + " : " + content + "</div>";
-                    }
+                    chatWindow.innerHTML += "<div class='otherMsg'>" + sender + " : " + content + "</div>";
                 }
             }
             chatWindow.scrollTop = chatWindow.scrollHeight;
         };
 
     </script>
-    <style>  <!-- 대화창 스타일 지정 -->
-    #chatWindow{border:1px solid black; width:270px; height:310px; overflow:scroll; padding:5px;}
-    #chatMessage{width:236px; height:30px;}
-    #sendBtn{height:30px; position:relative; top:2px; left:-2px;}
-    #closeBtn{margin-bottom:3px; position:relative; top:2px; left:-2px;}
-    #chatId{width:158px; height:24px; border:1px solid #AAAAAA; background-color:#EEEEEE;}
-    .myMsg{text-align:right;}
-    </style>
 </head>
 
 <body>  <!-- 대화창 UI 구조 정의 -->
 <div id="chatWindow"></div>
-<div>
+<div id="inputSection">
     <input type="text" id="chatMessage" onkeyup="enterKey();">
     <button id="sendBtn" onclick="sendMessage();">전송</button>
 </div>

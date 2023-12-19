@@ -2,9 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/apple.css?after6">
+    <link rel="icon" type="image/png" href="../img/logo2.png">
+    <link rel="stylesheet" type="text/css" href="../css/apple.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <title>Apple 결제 페이지</title>
+    <title>Apple Store - iPhone 15 Pro</title>
     <style>
         .h1-order {
             text-align: center;
@@ -19,7 +20,7 @@
             font-weight: bold;
         }
         .h3-order{
-            margin-left: 24%;
+            width: 100%;
         }
         .image-section-order {
             display: flex;
@@ -32,10 +33,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            margin-top: 40px;
         }
         .item-container{
-            margin-left: 100px;
-            margin-right: 150px;
+            margin-left: 50px;
         }
 
         .buy-image {
@@ -56,16 +57,16 @@
         hr {
             margin-top: 30px;
             margin-bottom: 30px;
-            margin-left: 300px;
-            margin-right: 300px;
+            width: 820px;
         }
+
         .submit-btn {
             display: inline-block;
             width: 120px; /* 라벨의 너비와 동일 */
-            height: 30px; /* 라벨의 높이와 동일 */
+            height: 38px; /* 라벨의 높이와 동일 */
             line-height: 30px;  /* 라벨의 line-height와 동일, 텍스트를 수직 중앙에 배치 */
-            background-color: #ccc; /* 연한 회색 */
-            color: #fff; /* 텍스트 색상 */
+            background-color: #999999; /* 짙은 회색 */
+            color: white; /* 텍스트 색상 */
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -76,7 +77,6 @@
 
         .submit-btn:hover {
             background-color: #555; /* 진한 회색 */
-            transform: scale(1.1); /* 마우스를 올렸을 때 버튼 크기를 1.1배로 설정 */
         }
         .item-container input[type="radio"] {
             transition: transform 0.3s ease; /* 라디오 버튼 크기가 부드럽게 변하도록 설정 */
@@ -86,8 +86,18 @@
             transform: scale(1.2); /* 마우스를 올렸을 때 라디오 버튼 크기를 1.2배로 설정 */
         }
 
+        .recommend-list-container {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+        }
 
-        /*------------------------------------------------------------- */
+        .recommend-list {
+            width: 820px;
+            display: block;
+            align-items: center;
+            justify-content: center;
+        }
 
         .list-tr img {
             max-width: 100px;
@@ -95,10 +105,10 @@
         }
         .list-table {
             border-collapse: collapse;  /* 테두리 선이 겹치도록 설정 */
-            width: 60%;  /* 테이블 너비를 100%로 설정 */
-            margin: 0 auto;  /* 테이블을 페이지 가운데에 정렬 */
+            width: 100%;  /* 테이블 너비를 100%로 설정 */
+            /*margin: 0 auto;  !* 테이블을 페이지 가운데에 정렬 *!*/
+            font-size: 0.9em;
         }
-
 
         .list-td {
             padding: 8px;  /* 셀 내부의 패딩 설정 */
@@ -114,31 +124,22 @@
         .list-td a img:hover {
             transform: scale(1.1); /* 이미지를 1.1배 확대 */
         }
-        /*---------------------------------------------------------------------*/
 
-
-        /*.buy-image {*/
-        /*    transition: transform 0.3s ease; !* 이미지 크기가 부드럽게 변하도록 설정 *!*/
-        /*}*/
-
-        /*.buy-image:hover {*/
-        /*    transform: scale(1.1); !* 마우스를 올렸을 때 이미지 크기를 1.1배로 설정 *!*/
-        /*}*/
-        /*---------------------상체--------------------*/
         .capacity-selection select {
-            width: 200px;
-            height: 35px;
+            width: 120px;
+            height: 30px;
             padding: 5px;
             border: 1px solid #aaa;
             border-radius: 5px;
             background-color: #f0f0f0;
-            font-size: 16px;
+            font-size: 0.9em;
             color: #333;
             outline: none;
+            text-align: center;
         }
 
         .capacity-selection select:focus {
-            border-color: #f35429;
+            border-color: #f0f0f0;
         }
         .color-selection input[type="radio"] {
             display: none;
@@ -146,8 +147,8 @@
 
         .color-selection label {
             display: inline-block;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             margin-right: 10px;
             border-radius: 50%;
             border: 2px solid #ddd;
@@ -173,25 +174,49 @@
         .color-selection input[type="radio"]:checked + label {
             border: 2px solid black;
         }
-
-
-
     </style>
     <script>
         window.onload = function() {
-            var tds = document.querySelectorAll('.list-td');  // 'list-td' 클래스를 가진 모든 요소를 선택
+            // 페이지 로드 시 기본 결제 금액 설정
+            updatePaymentAmount();
 
+            const capacitySelection = document.querySelector('.capacity-selection select');
+            capacitySelection.addEventListener('change', function() {
+                // 저장 용량이 변경될 때마다 결제 금액 업데이트
+                updatePaymentAmount();
+            });
+
+            const tds = document.querySelectorAll('.list-td');  // 'list-td' 클래스를 가진 모든 요소를 선택
             tds.forEach(function(td) {
-                var title = td.innerText;  // 각 요소의 텍스트를 가져옴
+                const title = td.innerText;  // 각 요소의 텍스트를 가져옴
                 if (title.length > 10) {  // 텍스트가 20자를 초과하면
                     td.innerText = title.substring(0, 10) + "...";  // 처음 20자만 남기고 나머지는 '...'로 대체
                 }
             });
         };
 
+        function updatePaymentAmount() {
+            const capacitySelection = document.querySelector('.capacity-selection select');
+            const paymentAmount = document.querySelector('.payment-amount p');
+
+            const selectedCapacity = capacitySelection.value;
+
+            const priceMap = {
+                '128GB': "1,550,000",
+                '256GB': "1,700,000",
+                '512GB': "2,000,000",
+                '1TB': "2,300,000"
+            };
+
+            if (priceMap.hasOwnProperty(selectedCapacity)) {
+                const price = priceMap[selectedCapacity];
+                paymentAmount.textContent = '결제금액: ' + price.toLocaleString() + '원';
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
-            var colorSelection = document.querySelector('.color-selection');
-            var h4Element = document.getElementById('color-picking');
+            const colorSelection = document.querySelector('.color-selection');
+            const h4Element = document.getElementById('color-picking');
 
             colorSelection.addEventListener('click', function (event) {
                 if (event.target.type === 'radio') {
@@ -200,29 +225,59 @@
                 }
             });
         });
+
+        const confirmPurchase = (isLogin) => {
+            if (isLogin != null) {
+                if (confirm('정말 결제하시겠습니까?')) {
+                    validPurchase();
+                }
+            } else {
+                alert('로그인 후 이용해주세요.');
+                window.location.href = '/user/login';
+            }
+        }
+
+        const validPurchase = () => {
+            const radios = document.getElementsByClassName('color-options');
+            let formValid = false;
+
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    formValid = true;
+                    break;
+                }
+            }
+            if (!formValid) {
+                alert('색상을 선택해주세요.');
+            } else {
+                const form = document.getElementById('submitForm');
+                form.submit();
+            }
+        }
+
     </script>
 
 </head>
 <body>
 <%@ include file="../modules/header.jsp" %>
-<form action="${pageContext.request.contextPath}/order-proc"  method="post">
+<form action="${pageContext.request.contextPath}/order-proc"  method="post" id="submitForm">
     <section class="image-section-order">
         <div class="image-container">
             <img class="buy-image"src="${pageContext.request.contextPath}/img/iPhone15Pro_final.png" alt="15 Pro"/>            <div class="item-container">
             <div class="color-selection">
-                <h2 class="h1-order">iPhone 15 Pro 구입하기</h2>
-                <h4 id="color-picking">색상</h4>
-                <input type="radio" id="naturalTitanium" name="color" value="내추럴 티타늄">
+                <h2 class="h1-order">iPhone 15 Pro</h2>
+                <h5 id="color-picking">색상</h5>
+                <input type="radio" class="color-options" id="naturalTitanium" name="color" value="내추럴 티타늄">
                 <label for="naturalTitanium"></label>
-                <input type="radio" id="blueTitanium" name="color" value="블루 티타늄">
+                <input type="radio" class="color-options" id="blueTitanium" name="color" value="블루 티타늄">
                 <label for="blueTitanium"></label>
-                <input type="radio" id="whiteTitanium" name="color" value="화이트 티타늄">
+                <input type="radio" class="color-options" id="whiteTitanium" name="color" value="화이트 티타늄">
                 <label for="whiteTitanium"></label>
-                <input type="radio" id="blackTitanium" name="color" value="블랙 티타늄">
+                <input type="radio" class="color-options" id="blackTitanium" name="color" value="블랙 티타늄">
                 <label for="blackTitanium"></label>
             </div>
             <div class="capacity-selection">
-                <h4>저장 용량</h4>
+                <h5>저장 용량</h5>
                 <select name="capacity">
                     <option value="128GB">128GB</option>
                     <option value="256GB">256GB</option>
@@ -233,59 +288,64 @@
             <div class="payment-amount">
                 <p>결제금액: 1,550,000원</p>
             </div>
-            <h4>무료 배송 서비스가 제공됩니다</h4>
-            <input type="submit" value="구매" class="submit-btn">
+            <h4>회원 등급에 따라 할인이 적용됩니다</h4>
+            <button type="button" class="submit-btn" onclick="confirmPurchase(${sessionScope.isLogin})">구매</button>
+<%--            <input onclick="confirmPurchase(${sessionScope.isLogin})" value="구매" class="submit-btn">--%>
         </div>
         </div>
     </section>
 </form>
 <hr>
-<h3 class="h3-order">추천 Apple 상품</h3>
-<table class="list-table">
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index < 5}">
-                <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index < 5}">
-                <td class="list-td">${shopDataList.itemTitle}</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index < 5}">
-                <td class="list-td">${shopDataList.itemPrice}원</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <!-- 5번째 이후의 상품 데이터를 넣는 부분 -->
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index >= 5}">
-                <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index >= 5}">
-                <td class="list-td">${shopDataList.itemTitle}</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-    <tr class="list-tr">
-        <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
-            <c:if test="${status.index >= 5}">
-                <td class="list-td">${shopDataList.itemPrice}원</td>
-            </c:if>
-        </c:forEach>
-    </tr>
-</table>
+<section class="recommend-list-container">
+    <div class="recommend-list">
+        <h3 class="h3-order">추천 악세사리</h3><p style="font-size: 0.7em; font-weight: bold;">by 네이버 쇼핑</p>
+        <table class="list-table">
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index < 5}">
+                        <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index < 5}">
+                        <td class="list-td">${shopDataList.itemTitle}</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index < 5}">
+                        <td class="list-td">${shopDataList.itemPrice}원</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <!-- 5번째 이후의 상품 데이터를 넣는 부분 -->
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index >= 5}">
+                        <td class="list-td"><a href="${shopDataList.itemUrl}"><img src="${shopDataList.itemImgUrl}" alt="상품 이미지"></a></td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index >= 5}">
+                        <td class="list-td">${shopDataList.itemTitle}</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+            <tr class="list-tr">
+                <c:forEach var="shopDataList" items="${shopData}" varStatus="status" > <!-- for문 JSTL -->
+                    <c:if test="${status.index >= 5}">
+                        <td class="list-td">${shopDataList.itemPrice}원</td>
+                    </c:if>
+                </c:forEach>
+            </tr>
+        </table>
+    </div>
+</section>
 <%@ include file="../modules/footer.jsp" %>
 </body>
 </html>
