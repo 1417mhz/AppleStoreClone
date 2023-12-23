@@ -111,7 +111,7 @@
 </section>
 <!-- section main2 -->
 <section class="main4">
-  <h3 class="t2"><span style="color: red; white-space: pre">최신 제품. </span>주고싶은 특별한 누군가를 위한 선물</h3>
+  <h3 class="t2"><span style="color: red; white-space: pre">최신 제품. </span>주고싶은 특별한 누군가를 위한 선물.</h3>
 </section>
 <section class="main4" id="sec_iphone">
   <h3 class="t5">iPhone</h3>

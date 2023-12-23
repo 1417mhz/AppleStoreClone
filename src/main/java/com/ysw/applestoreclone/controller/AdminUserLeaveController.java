@@ -19,23 +19,10 @@ public class AdminUserLeaveController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         String userId = req.getParameter("leaveUser");
-//        String loginType = userService.getUserInfoById(userId).getSocialType();
         if (userId == null) {
             System.out.println("!! 회원 정보 확인 !!");
             res.sendRedirect(req.getContextPath() + "/admin-page");
         } else {
-            /*
-            switch (loginType) {
-                case "kakao":
-                    userService.userLeaveKakao(userId, session.getAttribute("accessToken").toString());
-                    break;
-                case "naver":
-                    userService.userLeaveNaver(userId, session.getAttribute("accessToken").toString());
-                    break;
-                default:
-                    userService.userLeave(userId);
-                    break;
-            } */
             userService.userLeave(userId);
             res.sendRedirect(req.getContextPath() + "/admin-page");
         }

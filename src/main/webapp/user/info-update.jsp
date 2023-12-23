@@ -59,7 +59,7 @@
   <div class="form-container">
     <div class="element-container">
       <h1>개인정보 변경</h1>
-      <form action="${pageContext.request.contextPath}/user/info-update-proc" method="post">
+      <form action="${pageContext.request.contextPath}/user/info-update-proc" method="post" id="submitForm">
         <div class="form-group">
           <label for="userEmail"></label>
           <input type="email" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요" required>
@@ -77,7 +77,7 @@
           <input type="tel" id="userContact" name="userContact" placeholder="연락처를 입력하세요" required>
         </div>
         <div class="form-group">
-        <button type="button" onclick="updateConfirm()" id="submitForm">변경</button>
+        <button type="button" onclick="updateConfirm()">변경</button>
         <button type="button" onclick="location.href='/user/my-page'">취소</button>
         </div>
       </form>
